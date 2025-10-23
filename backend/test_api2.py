@@ -89,8 +89,13 @@ class APITester:
                 self.log("PASS", endpoint, "POST", msg)
                 return result
             else:
-                error = response.json() if response.text else response.status_code
-                self.log("FAIL", endpoint, "POST", f"Status {response.status_code}")
+                # Try to parse JSON error
+                try:
+                    error = response.json()
+                    msg = f"Status {response.status_code}: {error}"
+                except:
+                    msg = f"Status {response.status_code}: {response.text[:100] if response.text else 'No response body'}"
+                self.log("FAIL", endpoint, "POST", msg)
                 return None
         except Exception as e:
             self.log("FAIL", endpoint, "POST", str(e))
