@@ -1,0 +1,1519 @@
+================================================================================
+DOCUMENTACIÓN COMPLETA DE ENDPOINTS - DJANGO REST FRAMEWORK API
+================================================================================
+
+URL BASE: http://localhost:8000/api/v1/
+
+AUTENTICACIÓN REQUERIDA: JWT Token en header Authorization: Bearer {TOKEN}
+CONTENIDO: application/json
+
+================================================================================
+MÓDULO: AUTENTICACIÓN (sin autenticación requerida)
+================================================================================
+
+[1] OBTENER TOKEN JWT
+   Tipo: POST
+   Nombre: Obtener Token de Autenticación
+   Endpoint: /auth/token/
+   
+   Payload esperado:
+   {
+     "username": "string (requerido)",
+     "password": "string (requerido)"
+   }
+   
+   Respuestas:
+   - 200 OK:
+     {
+       "access": "string (JWT token)",
+       "refresh": "string (JWT refresh token)",
+       "usuario": {
+         "id": "uuid",
+         "email": "string",
+         "nombre_completo": "string",
+         "roles": ["array de strings"]
+       }
+     }
+   - 401 Unauthorized: Credenciales inválidas
+   - 400 Bad Request: Campos requeridos no enviados
+
+
+================================================================================
+MÓDULO: USUARIOS
+================================================================================
+
+[2] LISTAR EMPRESAS
+   Tipo: GET
+   Nombre: Listar todas las empresas
+   Endpoint: /usuarios/empresas/
+   
+   Payload esperado: Ninguno
+   
+   Parámetros query opcionales:
+   - page: número de página (paginación)
+   - search: búsqueda por nombre
+   
+   Respuestas:
+   - 200 OK:
+     {
+       "count": 10,
+       "next": "url",
+       "previous": null,
+       "results": [
+         {
+           "id": "uuid",
+           "nombre": "string",
+           "tipo_empresa": "PRODUCTOR|ACOPIO|TRANSFORMACION|EXPORTADOR|DISTRIBUIDOR|ASOCIACION",
+           "registro_nacional": "string",
+           "email": "string",
+           "telefono": "string",
+           "direccion": "string",
+           "ciudad": "string",
+           "pais": "string",
+           "es_activa": boolean,
+           "certificaciones": ["array"],
+           "creado_en": "datetime",
+           "actualizado_en": "datetime"
+         }
+       ]
+     }
+   - 401 Unauthorized: Token inválido o expirado
+   - 403 Forbidden: Sin permisos
+
+[3] VER DETALLE DE EMPRESA
+   Tipo: GET
+   Nombre: Obtener detalles de una empresa
+   Endpoint: /usuarios/empresas/{empresa_id}/
+   
+   Payload esperado: Ninguno
+   
+   Respuestas:
+   - 200 OK: (Mismo objeto de empresa)
+   - 401 Unauthorized
+   - 403 Forbidden
+   - 404 Not Found: Empresa no existe
+
+[4] CREAR EMPRESA
+   Tipo: POST
+   Nombre: Crear nueva empresa
+   Endpoint: /usuarios/empresas/
+   
+   Payload esperado:
+   {
+     "nombre": "string (requerido, único)",
+     "tipo_empresa": "PRODUCTOR|ACOPIO|TRANSFORMACION|EXPORTADOR|DISTRIBUIDOR|ASOCIACION (requerido)",
+     "email": "email (requerido, válido)",
+     "ciudad": "string (requerido)",
+     "direccion": "string (requerido)",
+     "telefono": "string (opcional)",
+     "registro_nacional": "string (opcional)",
+     "pais": "string (opcional, default: Ecuador)",
+     "es_activa": boolean (opcional, default: true),
+     "certificaciones": ["array"] (opcional)
+   }
+   
+   Respuestas:
+   - 201 Created: (Objeto empresa creado)
+   - 400 Bad Request: Validación fallida
+   - 401 Unauthorized
+   - 409 Conflict: Nombre ya existe
+
+[5] ACTUALIZAR EMPRESA
+   Tipo: PUT
+   Nombre: Actualizar empresa
+   Endpoint: /usuarios/empresas/{empresa_id}/
+   
+   Payload esperado: (Mismos campos de POST, pero solo los a actualizar)
+   Nota: Campos 'nombre' y 'tipo_empresa' son read-only
+   
+   Respuestas:
+   - 200 OK: (Objeto empresa actualizado)
+   - 400 Bad Request: Validación fallida
+   - 401 Unauthorized
+   - 403 Forbidden
+   - 404 Not Found
+
+[6] ELIMINAR EMPRESA
+   Tipo: DELETE
+   Nombre: Eliminar empresa
+   Endpoint: /usuarios/empresas/{empresa_id}/
+   
+   Payload esperado: Ninguno
+   
+   Respuestas:
+   - 204 No Content: Eliminado exitosamente
+   - 401 Unauthorized
+   - 403 Forbidden
+   - 404 Not Found
+
+[7] LISTAR FINCAS
+   Tipo: GET
+   Nombre: Listar todas las fincas
+   Endpoint: /usuarios/fincas/
+   
+   Payload esperado: Ninguno
+   
+   Parámetros query:
+   - page: número de página
+   - empresa_id: filtrar por empresa
+   
+   Respuestas:
+   - 200 OK:
+     {
+       "count": 5,
+       "results": [
+         {
+           "id": "uuid",
+           "empresa": "uuid",
+           "empresa_nombre": "string",
+           "nombre": "string",
+           "codigo_finca": "string",
+           "direccion": "string",
+           "ciudad": "string",
+           "coordenadas_latitud": 4.7110,
+           "coordenadas_longitud": -74.0055,
+           "tamaño_hectareas": 50.00,
+           "es_activa": boolean,
+           "creado_en": "datetime",
+           "actualizado_en": "datetime"
+         }
+       ]
+     }
+   - 401 Unauthorized
+   - 403 Forbidden
+
+[8] VER DETALLE DE FINCA
+   Tipo: GET
+   Nombre: Obtener detalles de una finca
+   Endpoint: /usuarios/fincas/{finca_id}/
+   
+   Payload esperado: Ninguno
+   
+   Respuestas:
+   - 200 OK: (Objeto finca)
+   - 401 Unauthorized
+   - 404 Not Found
+
+[9] CREAR FINCA
+   Tipo: POST
+   Nombre: Crear nueva finca
+   Endpoint: /usuarios/fincas/
+   
+   Payload esperado:
+   {
+     "empresa": "uuid (requerido)",
+     "nombre": "string (requerido)",
+     "codigo_finca": "string (requerido, único)",
+     "direccion": "string (requerido)",
+     "ciudad": "string (requerido)",
+     "coordenadas_latitud": decimal (requerido),
+     "coordenadas_longitud": decimal (requerido),
+     "tamaño_hectareas": decimal (opcional),
+     "es_activa": boolean (opcional, default: true)
+   }
+   
+   Respuestas:
+   - 201 Created: (Objeto finca creado)
+   - 400 Bad Request: Validación fallida
+   - 401 Unauthorized
+
+[10] ACTUALIZAR FINCA
+    Tipo: PUT
+    Nombre: Actualizar finca
+    Endpoint: /usuarios/fincas/{finca_id}/
+    
+    Payload esperado: (Campos a actualizar)
+    
+    Respuestas:
+    - 200 OK: (Finca actualizada)
+    - 400 Bad Request
+    - 401 Unauthorized
+    - 404 Not Found
+
+[11] ELIMINAR FINCA
+    Tipo: DELETE
+    Nombre: Eliminar finca
+    Endpoint: /usuarios/fincas/{finca_id}/
+    
+    Payload esperado: Ninguno
+    
+    Respuestas:
+    - 204 No Content
+    - 401 Unauthorized
+    - 404 Not Found
+
+[12] LISTAR FINCAS POR EMPRESA
+    Tipo: GET
+    Nombre: Listar fincas de una empresa
+    Endpoint: /usuarios/empresas/{empresa_id}/fincas/
+    
+    Payload esperado: Ninguno
+    
+    Respuestas:
+    - 200 OK: (Array de fincas)
+    - 401 Unauthorized
+    - 404 Not Found
+
+[13] LISTAR PERMISOS
+    Tipo: GET
+    Nombre: Listar todos los permisos
+    Endpoint: /usuarios/permisos/
+    
+    Payload esperado: Ninguno
+    
+    Respuestas:
+    - 200 OK:
+      {
+        "count": N,
+        "results": [
+          {
+            "id": integer,
+            "nombre": "string",
+            "descripcion": "string",
+            "codigo": "string"
+          }
+        ]
+      }
+    - 401 Unauthorized
+
+[14] LISTAR USUARIOS-EMPRESAS
+    Tipo: GET
+    Nombre: Listar asignaciones usuario-empresa
+    Endpoint: /usuarios/usuarios-empresas/
+    
+    Payload esperado: Ninguno
+    
+    Respuestas:
+    - 200 OK: (Array de relaciones usuario-empresa)
+    - 401 Unauthorized
+
+
+================================================================================
+MÓDULO: TRAZABILIDAD
+================================================================================
+
+[15] LISTAR PRODUCTOS
+    Tipo: GET
+    Nombre: Listar todos los productos
+    Endpoint: /trazabilidad/productos/
+    
+    Payload esperado: Ninguno
+    
+    Respuestas:
+    - 200 OK:
+      {
+        "count": N,
+        "results": [
+          {
+            "id": "uuid",
+            "nombre": "string",
+            "tipo_producto": "FRUTA|VERDURA|TUBÉRCULO|GRANO|PROCESADO",
+            "descripcion": "string",
+            "unidad_medida": "string",
+            "creado_en": "datetime"
+          }
+        ]
+      }
+    - 401 Unauthorized
+
+[16] VER DETALLE PRODUCTO
+    Tipo: GET
+    Nombre: Obtener detalles de un producto
+    Endpoint: /trazabilidad/productos/{producto_id}/
+    
+    Respuestas:
+    - 200 OK: (Objeto producto)
+    - 401 Unauthorized
+    - 404 Not Found
+
+[17] CREAR PRODUCTO
+    Tipo: POST
+    Nombre: Crear nuevo producto
+    Endpoint: /trazabilidad/productos/
+    
+    Payload esperado:
+    {
+      "nombre": "string (requerido, único)",
+      "tipo_producto": "FRUTA|VERDURA|TUBÉRCULO|GRANO|PROCESADO (requerido)",
+      "descripcion": "string (opcional)",
+      "unidad_medida": "string (opcional, default: kg)"
+    }
+    
+    Respuestas:
+    - 201 Created: (Objeto producto)
+    - 400 Bad Request
+    - 401 Unauthorized
+
+[18] ACTUALIZAR PRODUCTO
+    Tipo: PUT
+    Nombre: Actualizar producto
+    Endpoint: /trazabilidad/productos/{producto_id}/
+    
+    Respuestas:
+    - 200 OK
+    - 400 Bad Request
+    - 401 Unauthorized
+    - 404 Not Found
+
+[19] ELIMINAR PRODUCTO
+    Tipo: DELETE
+    Nombre: Eliminar producto
+    Endpoint: /trazabilidad/productos/{producto_id}/
+    
+    Respuestas:
+    - 204 No Content
+    - 401 Unauthorized
+    - 404 Not Found
+
+[20] LISTAR LOTES
+    Tipo: GET
+    Nombre: Listar todos los lotes
+    Endpoint: /trazabilidad/lotes/
+    
+    Payload esperado: Ninguno
+    
+    Parámetros query:
+    - estado: filtrar por estado
+    - producto_id: filtrar por producto
+    
+    Respuestas:
+    - 200 OK:
+      {
+        "results": [
+          {
+            "id": "uuid",
+            "codigo_lote": "string",
+            "producto": "uuid",
+            "producto_detalle": {...},
+            "cantidad": decimal,
+            "unidad_medida": "string",
+            "latitud_origen": decimal,
+            "longitud_origen": decimal,
+            "nombre_ubicacion_origen": "string",
+            "fecha_produccion": "datetime",
+            "fecha_empaque": "datetime",
+            "fecha_vencimiento": "datetime",
+            "estado": "PRODUCCION|ALMACENADO|TRANSITO|PROCESAMIENTO|CALIDAD_PENDIENTE|CALIDAD_RECHAZADO|EXPORTACION|ENTREGADO|CANCELADO",
+            "es_organico": boolean,
+            "temperatura_almacenamiento": float,
+            "humedad_almacenamiento": float,
+            "creado_en": "datetime",
+            "actualizado_en": "datetime",
+            "qr_code": "url"
+          }
+        ]
+      }
+    - 401 Unauthorized
+
+[21] VER DETALLE LOTE
+    Tipo: GET
+    Nombre: Obtener detalles de un lote
+    Endpoint: /trazabilidad/lotes/{lote_id}/
+    
+    Respuestas:
+    - 200 OK: (Objeto lote)
+    - 401 Unauthorized
+    - 404 Not Found
+
+[22] CREAR LOTE
+    Tipo: POST
+    Nombre: Crear nuevo lote
+    Endpoint: /trazabilidad/lotes/
+    
+    Payload esperado:
+    {
+      "codigo_lote": "string (requerido, único)",
+      "producto": "uuid (requerido)",
+      "cantidad": decimal (requerido),
+      "unidad_medida": "string (requerido)",
+      "fecha_produccion": "datetime (requerido)",
+      "latitud_origen": decimal (opcional),
+      "longitud_origen": decimal (opcional),
+      "nombre_ubicacion_origen": "string (opcional)",
+      "fecha_empaque": "datetime (opcional)",
+      "fecha_vencimiento": "datetime (opcional)",
+      "estado": "string (opcional, default: PRODUCCION)",
+      "es_organico": boolean (opcional),
+      "temperatura_almacenamiento": float (opcional),
+      "humedad_almacenamiento": float (opcional)"
+    }
+    
+    Respuestas:
+    - 201 Created: (Objeto lote)
+    - 400 Bad Request
+    - 401 Unauthorized
+
+[23] ACTUALIZAR LOTE
+    Tipo: PUT
+    Nombre: Actualizar lote
+    Endpoint: /trazabilidad/lotes/{lote_id}/
+    
+    Respuestas:
+    - 200 OK
+    - 400 Bad Request
+    - 401 Unauthorized
+    - 404 Not Found
+
+[24] ELIMINAR LOTE
+    Tipo: DELETE
+    Nombre: Eliminar lote
+    Endpoint: /trazabilidad/lotes/{lote_id}/
+    
+    Respuestas:
+    - 204 No Content
+    - 401 Unauthorized
+    - 404 Not Found
+
+[25] LISTAR TIPOS DE EVENTOS
+    Tipo: GET
+    Nombre: Listar tipos de eventos de trazabilidad
+    Endpoint: /trazabilidad/tipos-eventos/
+    
+    Respuestas:
+    - 200 OK: (Array de tipos de eventos)
+    - 401 Unauthorized
+
+[26] VER TIPO EVENTO
+    Tipo: GET
+    Nombre: Obtener detalles de tipo de evento
+    Endpoint: /trazabilidad/tipos-eventos/{tipo_id}/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+    - 404 Not Found
+
+[27] LISTAR EVENTOS DE LOTE
+    Tipo: GET
+    Nombre: Listar eventos de un lote
+    Endpoint: /trazabilidad/lotes/{lote_id}/eventos/
+    
+    Respuestas:
+    - 200 OK: (Array de eventos del lote)
+    - 401 Unauthorized
+    - 404 Not Found
+
+[28] REGISTRAR EVENTO EN LOTE
+    Tipo: POST
+    Nombre: Crear nuevo evento para un lote
+    Endpoint: /trazabilidad/lotes/{lote_id}/eventos/
+    
+    Payload esperado:
+    {
+      "tipo_evento": "uuid (requerido)",
+      "descripcion": "string (opcional)",
+      "fecha_evento": "datetime (requerido)",
+      "latitud": decimal (opcional),
+      "longitud": decimal (opcional),
+      "nombre_ubicacion": "string (opcional)",
+      "observaciones": "string (opcional)",
+      "temperatura_registrada": float (opcional),
+      "humedad_registrada": float (opcional)"
+    }
+    
+    Respuestas:
+    - 201 Created: (Objeto evento)
+    - 400 Bad Request
+    - 401 Unauthorized
+    - 404 Not Found
+
+[29] LISTAR EVENTOS
+    Tipo: GET
+    Nombre: Listar todos los eventos
+    Endpoint: /trazabilidad/eventos/
+    
+    Respuestas:
+    - 200 OK: (Array de eventos)
+    - 401 Unauthorized
+
+[30] VER EVENTO
+    Tipo: GET
+    Nombre: Obtener detalles de evento
+    Endpoint: /trazabilidad/eventos/{evento_id}/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+    - 404 Not Found
+
+[31] LISTAR HISTORIAL LOTE
+    Tipo: GET
+    Nombre: Listar cambios de estado del lote
+    Endpoint: /trazabilidad/lotes/{lote_id}/historial/
+    
+    Respuestas:
+    - 200 OK: (Array de cambios de estado)
+    - 401 Unauthorized
+    - 404 Not Found
+
+[32] GENERAR QR LOTE
+    Tipo: POST
+    Nombre: Generar código QR para lote
+    Endpoint: /trazabilidad/lotes/{lote_id}/generar-qr/
+    
+    Payload esperado: Ninguno
+    
+    Respuestas:
+    - 200 OK: (Objeto lote con QR generado)
+    - 401 Unauthorized
+    - 404 Not Found
+
+
+================================================================================
+MÓDULO: LOGÍSTICA
+================================================================================
+
+[33] LISTAR VEHÍCULOS
+    Tipo: GET
+    Nombre: Listar todos los vehículos
+    Endpoint: /logistica/vehiculos/
+    
+    Respuestas:
+    - 200 OK:
+      {
+        "results": [
+          {
+            "id": "uuid",
+            "empresa": "uuid",
+            "empresa_nombre": "string",
+            "placa": "string",
+            "tipo_vehiculo": "CAMION|FURGONETA|AUTO|MOTO|OTRO",
+            "marca": "string",
+            "modelo": "string",
+            "año_fabricacion": integer,
+            "capacidad_kg": decimal,
+            "capacidad_volumen_m3": decimal,
+            "es_refrigerado": boolean,
+            "temperatura_min": float,
+            "temperatura_max": float,
+            "estado": "DISPONIBLE|EN_TRANSITO|EN_MANTENIMIENTO|FUERA_SERVICIO",
+            "numero_seguro": "string",
+            "fecha_vencimiento_seguro": "date"
+          }
+        ]
+      }
+    - 401 Unauthorized
+
+[34] VER VEHÍCULO
+    Tipo: GET
+    Nombre: Obtener detalles de vehículo
+    Endpoint: /logistica/vehiculos/{vehiculo_id}/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+    - 404 Not Found
+
+[35] CREAR VEHÍCULO
+    Tipo: POST
+    Nombre: Crear nuevo vehículo
+    Endpoint: /logistica/vehiculos/
+    
+    Payload esperado:
+    {
+      "empresa": "uuid (requerido)",
+      "placa": "string (requerido, único)",
+      "tipo_vehiculo": "CAMION|FURGONETA|AUTO|MOTO|OTRO (requerido)",
+      "marca": "string (requerido)",
+      "modelo": "string (requerido)",
+      "año_fabricacion": integer (requerido)",
+      "capacidad_kg": decimal (opcional)",
+      "capacidad_volumen_m3": decimal (opcional)",
+      "es_refrigerado": boolean (optional)",
+      "temperatura_min": float (optional)",
+      "temperatura_max": float (optional)",
+      "estado": "string (optional)",
+      "numero_seguro": "string (optional)",
+      "fecha_vencimiento_seguro": "date (optional)"
+    }
+    
+    Respuestas:
+    - 201 Created
+    - 400 Bad Request
+    - 401 Unauthorized
+
+[36] ACTUALIZAR VEHÍCULO
+    Tipo: PUT
+    Nombre: Actualizar vehículo
+    Endpoint: /logistica/vehiculos/{vehiculo_id}/
+    
+    Respuestas:
+    - 200 OK
+    - 400 Bad Request
+    - 401 Unauthorized
+    - 404 Not Found
+
+[37] ELIMINAR VEHÍCULO
+    Tipo: DELETE
+    Nombre: Eliminar vehículo
+    Endpoint: /logistica/vehiculos/{vehiculo_id}/
+    
+    Respuestas:
+    - 204 No Content
+    - 401 Unauthorized
+    - 404 Not Found
+
+[38] LISTAR CONDUCTORES
+    Tipo: GET
+    Nombre: Listar conductores
+    Endpoint: /logistica/conductores/
+    
+    Respuestas:
+    - 200 OK: (Array de conductores)
+    - 401 Unauthorized
+
+[39] VER CONDUCTOR
+    Tipo: GET
+    Nombre: Obtener detalles de conductor
+    Endpoint: /logistica/conductores/{conductor_id}/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+    - 404 Not Found
+
+[40] CREAR CONDUCTOR
+    Tipo: POST
+    Nombre: Crear nuevo conductor
+    Endpoint: /logistica/conductores/
+    
+    Payload esperado:
+    {
+      "usuario": "uuid (requerido)",
+      "numero_licencia": "string (requerido, único)",
+      "categoria_licencia": "string (optional, default: C)",
+      "fecha_vencimiento_licencia": "date (requerido)",
+      "empresa": "uuid (requerido)",
+      "es_activo": boolean (optional)"
+    }
+    
+    Respuestas:
+    - 201 Created
+    - 400 Bad Request
+    - 401 Unauthorized
+
+[41] LISTAR ENVÍOS
+    Tipo: GET
+    Nombre: Listar todos los envíos
+    Endpoint: /logistica/envios/
+    
+    Parámetros query:
+    - estado: filtrar por estado
+    
+    Respuestas:
+    - 200 OK:
+      {
+        "results": [
+          {
+            "id": "uuid",
+            "lote": "uuid",
+            "lote_codigo": "string",
+            "nombre_origen": "string",
+            "nombre_destino": "string",
+            "latitud_origen": decimal,
+            "longitud_origen": decimal,
+            "latitud_destino": decimal,
+            "longitud_destino": decimal,
+            "vehiculo": "uuid",
+            "vehiculo_placa": "string",
+            "conductor": "uuid",
+            "conductor_nombre": "string",
+            "fecha_salida": "datetime",
+            "fecha_llegada_estimada": "datetime",
+            "fecha_llegada_real": "datetime",
+            "estado": "PENDIENTE|EN_TRANSITO|ENTREGADO|CANCELADO|DEVUELTO",
+            "temperatura_registrada": float,
+            "humedad_registrada": float,
+            "distancia_km": float,
+            "observaciones": "string",
+            "incidencias": "string"
+          }
+        ]
+      }
+    - 401 Unauthorized
+
+[42] VER ENVÍO
+    Tipo: GET
+    Nombre: Obtener detalles de envío
+    Endpoint: /logistica/envios/{envio_id}/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+    - 404 Not Found
+
+[43] CREAR ENVÍO
+    Tipo: POST
+    Nombre: Crear nuevo envío
+    Endpoint: /logistica/envios/
+    
+    Payload esperado:
+    {
+      "lote": "uuid (requerido)",
+      "nombre_origen": "string (requerido)",
+      "nombre_destino": "string (requerido)",
+      "latitud_origen": decimal (optional)",
+      "longitud_origen": decimal (optional)",
+      "latitud_destino": decimal (optional)",
+      "longitud_destino": decimal (optional)",
+      "vehiculo": "uuid (optional)",
+      "conductor": "uuid (optional)",
+      "fecha_salida": "datetime (optional)",
+      "fecha_llegada_estimada": "datetime (optional)",
+      "estado": "string (optional, default: PENDIENTE)",
+      "observaciones": "string (optional)",
+      "incidencias": "string (optional)"
+    }
+    
+    Respuestas:
+    - 201 Created
+    - 400 Bad Request
+    - 401 Unauthorized
+
+[44] ACTUALIZAR ENVÍO
+    Tipo: PUT
+    Nombre: Actualizar envío
+    Endpoint: /logistica/envios/{envio_id}/
+    
+    Respuestas:
+    - 200 OK
+    - 400 Bad Request
+    - 401 Unauthorized
+    - 404 Not Found
+
+[45] ELIMINAR ENVÍO
+    Tipo: DELETE
+    Nombre: Eliminar envío
+    Endpoint: /logistica/envios/{envio_id}/
+    
+    Respuestas:
+    - 204 No Content
+    - 401 Unauthorized
+    - 404 Not Found
+
+[46] LISTAR TRACKING DE ENVÍO
+    Tipo: GET
+    Nombre: Obtener historial de tracking de un envío
+    Endpoint: /logistica/envios/{envio_id}/tracking/
+    
+    Respuestas:
+    - 200 OK: (Array de puntos de tracking)
+    - 401 Unauthorized
+    - 404 Not Found
+
+[47] REGISTRAR TRACKING
+    Tipo: POST
+    Nombre: Registrar nueva ubicación de envío
+    Endpoint: /logistica/envios/{envio_id}/tracking/
+    
+    Payload esperado:
+    {
+      "latitud": decimal (requerido)",
+      "longitud": decimal (requerido)",
+      "temperatura": float (optional)",
+      "humedad": float (optional)",
+      "velocidad_kmh": float (optional)",
+      "observaciones": "string (optional)"
+    }
+    
+    Respuestas:
+    - 201 Created
+    - 400 Bad Request
+    - 401 Unauthorized
+    - 404 Not Found
+
+
+================================================================================
+MÓDULO: PROCESAMIENTO
+================================================================================
+
+[48] LISTAR PROCESOS
+    Tipo: GET
+    Nombre: Listar procesos de procesamiento
+    Endpoint: /procesamiento/procesos/
+    
+    Respuestas:
+    - 200 OK: (Array de procesos)
+    - 401 Unauthorized
+
+[49] VER PROCESO
+    Tipo: GET
+    Nombre: Obtener detalles de proceso
+    Endpoint: /procesamiento/procesos/{proceso_id}/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+    - 404 Not Found
+
+[50] CREAR PROCESO
+    Tipo: POST
+    Nombre: Crear nuevo proceso
+    Endpoint: /procesamiento/procesos/
+    
+    Payload esperado:
+    {
+      "lote": "uuid (requerido)",
+      "tipo_proceso": "string (requerido)",
+      "descripcion": "string (optional)",
+      "fecha_inicio": "datetime (requerido)",
+      "fecha_fin": "datetime (optional)",
+      "resultado": "string (optional)",
+      "responsable": "string (optional)"
+    }
+    
+    Respuestas:
+    - 201 Created
+    - 400 Bad Request
+    - 401 Unauthorized
+
+[51] LISTAR INSPECCIONES
+    Tipo: GET
+    Nombre: Listar inspecciones de calidad
+    Endpoint: /procesamiento/inspecciones/
+    
+    Respuestas:
+    - 200 OK: (Array de inspecciones)
+    - 401 Unauthorized
+
+[52] VER INSPECCIÓN
+    Tipo: GET
+    Nombre: Obtener detalles de inspección
+    Endpoint: /procesamiento/inspecciones/{inspeccion_id}/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+    - 404 Not Found
+
+[53] CREAR INSPECCIÓN
+    Tipo: POST
+    Nombre: Crear nueva inspección
+    Endpoint: /procesamiento/inspecciones/
+    
+    Payload esperado:
+    {
+      "lote": "uuid (requerido)",
+      "tipo_inspección": "string (requerido)",
+      "resultado": "APROBADO|RECHAZADO|CONDICIONAL (requerido)",
+      "observaciones": "string (optional)",
+      "inspector": "string (optional)",
+      "fecha_inspección": "datetime (requerido)"
+    }
+    
+    Respuestas:
+    - 201 Created
+    - 400 Bad Request
+    - 401 Unauthorized
+
+[54] LISTAR CERTIFICACIONES
+    Tipo: GET
+    Nombre: Listar certificaciones
+    Endpoint: /procesamiento/certificaciones/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+
+[55] LISTAR ANÁLISIS DE LABORATORIO
+    Tipo: GET
+    Nombre: Listar resultados de análisis
+    Endpoint: /procesamiento/analisis-laboratorio/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+
+
+================================================================================
+MÓDULO: REPORTES
+================================================================================
+
+[56] LISTAR REPORTES
+    Tipo: GET
+    Nombre: Listar reportes
+    Endpoint: /reportes/reportes/
+    
+    Respuestas:
+    - 200 OK: (Array de reportes)
+    - 401 Unauthorized
+
+[57] VER REPORTE
+    Tipo: GET
+    Nombre: Obtener detalles de reporte
+    Endpoint: /reportes/reportes/{reporte_id}/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+    - 404 Not Found
+
+[58] CREAR REPORTE
+    Tipo: POST
+    Nombre: Generar nuevo reporte
+    Endpoint: /reportes/reportes/
+    
+    Payload esperado:
+    {
+      "tipo_reporte": "TRAZABILIDAD|CALIDAD|LOGISTICA|KPI (requerido)",
+      "fecha_inicio": "date (optional)",
+      "fecha_fin": "date (optional)",
+      "formato": "PDF|EXCEL|JSON (optional)",
+      "incluir_graficos": boolean (optional)"
+    }
+    
+    Respuestas:
+    - 201 Created
+    - 400 Bad Request
+    - 401 Unauthorized
+
+
+================================================================================
+MÓDULO: DOCUMENTOS
+================================================================================
+
+[59] LISTAR DOCUMENTOS
+    Tipo: GET
+    Nombre: Listar documentos
+    Endpoint: /documentos/documentos/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+
+[60] VER DOCUMENTO
+    Tipo: GET
+    Nombre: Obtener detalles de documento
+    Endpoint: /documentos/documentos/{documento_id}/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+    - 404 Not Found
+
+[61] CREAR DOCUMENTO
+    Tipo: POST
+    Nombre: Subir nuevo documento
+    Endpoint: /documentos/documentos/
+    
+    Payload esperado:
+    {
+      "lote": "uuid (optional)",
+      "tipo_documento": "CERTIFICADO|INSPECCIÓN|FACTURA|OTRO (requerido)",
+      "nombre": "string (requerido)",
+      "archivo": "file (requerido)",
+      "descripcion": "string (optional)"
+    }
+    
+    Respuestas:
+    - 201 Created
+    - 400 Bad Request
+    - 401 Unauthorized
+
+[62] LISTAR FOTOS
+    Tipo: GET
+    Nombre: Listar fotos de productos
+    Endpoint: /documentos/fotos/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+
+[63] CREAR FOTO
+    Tipo: POST
+    Nombre: Subir nueva foto
+    Endpoint: /documentos/fotos/
+    
+    Payload esperado:
+    {
+      "lote": "uuid (requerido)",
+      "foto": "file (requerido)",
+      "descripcion": "string (optional)",
+      "tipo_foto": "PRODUCTO|EMPAQUES|OTRO (requerido)"
+    }
+    
+    Respuestas:
+    - 201 Created
+    - 400 Bad Request
+    - 401 Unauthorized
+
+
+================================================================================
+MÓDULO: SINCRONIZACIÓN
+================================================================================
+
+[64] LISTAR ESTADOS DE SINCRONIZACIÓN
+    Tipo: GET
+    Nombre: Listar estados de sincronización
+    Endpoint: /sincronizacion/estados/
+    
+    Respuestas:
+    - 200 OK: (Array de estados)
+    - 401 Unauthorized
+
+[65] VER ESTADO SINCRONIZACIÓN
+    Tipo: GET
+    Nombre: Obtener detalles de estado
+    Endpoint: /sincronizacion/estados/{estado_id}/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+    - 404 Not Found
+
+[66] LISTAR CONFLICTOS
+    Tipo: GET
+    Nombre: Listar conflictos de sincronización
+    Endpoint: /sincronizacion/conflictos/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+
+[67] RESOLVER CONFLICTO
+    Tipo: POST
+    Nombre: Resolver conflicto
+    Endpoint: /sincronizacion/conflictos/{conflicto_id}/resolver/
+    
+    Payload esperado:
+    {
+      "resolucion": "SERVIDOR|CLIENTE|MANUAL (requerido)",
+      "notas": "string (optional)"
+    }
+    
+    Respuestas:
+    - 200 OK
+    - 400 Bad Request
+    - 401 Unauthorized
+    - 404 Not Found
+
+[68] LISTAR REGISTROS SINCRONIZACIÓN
+    Tipo: GET
+    Nombre: Listar registros de sincronización
+    Endpoint: /sincronizacion/registros/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+
+
+================================================================================
+MÓDULO: ADMINISTRACIÓN
+================================================================================
+
+[69] LISTAR LOGS DE ACCESO
+    Tipo: GET
+    Nombre: Listar logs de acceso
+    Endpoint: /administracion/logs-acceso/
+    
+    Respuestas:
+    - 200 OK: (Array de logs)
+    - 401 Unauthorized
+
+[70] VER LOG ACCESO
+    Tipo: GET
+    Nombre: Obtener detalles de log
+    Endpoint: /administracion/logs-acceso/{log_id}/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+    - 404 Not Found
+
+[71] LISTAR LOGS DE ACTIVIDAD
+    Tipo: GET
+    Nombre: Listar logs de actividad
+    Endpoint: /administracion/logs-actividad/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+
+[72] LISTAR BACKUPS
+    Tipo: GET
+    Nombre: Listar backups del sistema
+    Endpoint: /administracion/backups/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+
+[73] EJECUTAR BACKUP
+    Tipo: POST
+    Nombre: Ejecutar backup manual
+    Endpoint: /administracion/backups/ejecutar/
+    
+    Payload esperado: Ninguno
+    
+    Respuestas:
+    - 201 Created: (Backup creado)
+    - 401 Unauthorized
+    - 403 Forbidden
+
+[74] VER CONFIGURACIÓN
+    Tipo: GET
+    Nombre: Obtener configuración del sistema
+    Endpoint: /administracion/configuracion/
+    
+    Respuestas:
+    - 200 OK:
+      {
+        "id": "uuid",
+        "version_api": "string",
+        "version_db": "string",
+        "idioma_default": "string",
+        "zona_horaria": "string",
+        "activado": boolean,
+        "modo_mantenimiento": boolean,
+        "actualizado_en": "datetime"
+      }
+    - 401 Unauthorized
+
+[75] ACTUALIZAR CONFIGURACIÓN
+    Tipo: PUT
+    Nombre: Actualizar configuración del sistema
+    Endpoint: /administracion/configuracion/
+    
+    Payload esperado:
+    {
+      "idioma_default": "string (optional)",
+      "zona_horaria": "string (optional)",
+      "modo_mantenimiento": boolean (optional)"
+    }
+    
+    Respuestas:
+    - 200 OK
+    - 400 Bad Request
+    - 401 Unauthorized
+    - 403 Forbidden
+
+
+================================================================================
+MÓDULO: ALERTAS
+================================================================================
+
+[76] LISTAR ALERTAS
+    Tipo: GET
+    Nombre: Listar alertas
+    Endpoint: /alertas/alertas/
+    
+    Parámetros query:
+    - estado: filtrar por estado
+    - prioridad: filtrar por prioridad
+    
+    Respuestas:
+    - 200 OK: (Array de alertas)
+    - 401 Unauthorized
+
+[77] VER ALERTA
+    Tipo: GET
+    Nombre: Obtener detalles de alerta
+    Endpoint: /alertas/alertas/{alerta_id}/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+    - 404 Not Found
+
+[78] CREAR ALERTA
+    Tipo: POST
+    Nombre: Crear nueva alerta
+    Endpoint: /alertas/alertas/
+    
+    Payload esperado:
+    {
+      "tipo_alerta": "CALIDAD|LOGISTICA|PROCESAMIENTO|SINCRONIZACION (requerido)",
+      "prioridad": "BAJA|MEDIA|ALTA|CRITICA (requerido)",
+      "descripcion": "string (requerido)",
+      "lote": "uuid (optional)",
+      "envio": "uuid (optional)"
+    }
+    
+    Respuestas:
+    - 201 Created
+    - 400 Bad Request
+    - 401 Unauthorized
+
+[79] RESOLVER ALERTA
+    Tipo: POST
+    Nombre: Resolver una alerta
+    Endpoint: /alertas/alertas/{alerta_id}/resolver/
+    
+    Payload esperado:
+    {
+      "comentario": "string (optional)",
+      "acciones_tomadas": "string (optional)"
+    }
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+    - 404 Not Found
+
+[80] LISTAR ALERTAS ABIERTAS
+    Tipo: GET
+    Nombre: Listar alertas no resueltas
+    Endpoint: /alertas/alertas/abiertas/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+
+[81] LISTAR REGLAS
+    Tipo: GET
+    Nombre: Listar reglas de alertas
+    Endpoint: /alertas/reglas/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+
+[82] CREAR REGLA
+    Tipo: POST
+    Nombre: Crear nueva regla de alerta
+    Endpoint: /alertas/reglas/
+    
+    Payload esperado:
+    {
+      "nombre": "string (requerido)",
+      "tipo_alerta": "string (requerido)",
+      "condicion": "string (requerido)",
+      "accion": "string (requerido)",
+      "activa": boolean (optional, default: true)"
+    }
+    
+    Respuestas:
+    - 201 Created
+    - 400 Bad Request
+    - 401 Unauthorized
+
+
+================================================================================
+MÓDULO: NOTIFICACIONES
+================================================================================
+
+[83] LISTAR NOTIFICACIONES
+    Tipo: GET
+    Nombre: Listar notificaciones
+    Endpoint: /notificaciones/notificaciones/
+    
+    Respuestas:
+    - 200 OK: (Array de notificaciones)
+    - 401 Unauthorized
+
+[84] VER NOTIFICACIÓN
+    Tipo: GET
+    Nombre: Obtener detalles de notificación
+    Endpoint: /notificaciones/notificaciones/{notificacion_id}/
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+    - 404 Not Found
+
+[85] CREAR NOTIFICACIÓN
+    Tipo: POST
+    Nombre: Crear nueva notificación
+    Endpoint: /notificaciones/notificaciones/
+    
+    Payload esperado:
+    {
+      "usuario_destinatario": "uuid (requerido)",
+      "tipo_notificacion": "ALERTA|EVENTO_TRAZABILIDAD|ENVIO_ESTADO|CALIDAD|SINCRONIZACION|SISTEMA|INFORMATIVO (requerido)",
+      "titulo": "string (requerido)",
+      "cuerpo": "string (requerido)",
+      "prioridad": "BAJA|MEDIA|ALTA|CRITICA (optional)",
+      "alerta": "uuid (optional)",
+      "evento_trazabilidad": "uuid (optional)",
+      "envio": "uuid (optional)",
+      "lote": "uuid (optional)",
+      "datos_adicionales": "json (optional)",
+      "fecha_expiracion": "datetime (optional)"
+    }
+    
+    Respuestas:
+    - 201 Created
+    - 400 Bad Request
+    - 401 Unauthorized
+
+[86] ACTUALIZAR NOTIFICACIÓN
+    Tipo: PUT
+    Nombre: Actualizar notificación
+    Endpoint: /notificaciones/notificaciones/{notificacion_id}/
+    
+    Respuestas:
+    - 200 OK
+    - 400 Bad Request
+    - 401 Unauthorized
+    - 404 Not Found
+
+[87] ELIMINAR NOTIFICACIÓN
+    Tipo: DELETE
+    Nombre: Eliminar notificación
+    Endpoint: /notificaciones/notificaciones/{notificacion_id}/
+    
+    Respuestas:
+    - 204 No Content
+    - 401 Unauthorized
+    - 404 Not Found
+
+[88] LISTAR NOTIFICACIONES NO LEÍDAS
+    Tipo: GET
+    Nombre: Obtener notificaciones no leídas (polling)
+    Endpoint: /notificaciones/notificaciones/no-leidas/
+    
+    Respuestas:
+    - 200 OK: (Array de notificaciones no leídas)
+    - 401 Unauthorized
+
+[89] MARCAR COMO LEÍDA
+    Tipo: POST
+    Nombre: Marcar notificación como leída
+    Endpoint: /notificaciones/notificaciones/{notificacion_id}/marcar-leida/
+    
+    Payload esperado: Ninguno
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+    - 404 Not Found
+
+[90] MARCAR TODAS COMO LEÍDAS
+    Tipo: POST
+    Nombre: Marcar todas las notificaciones como leídas
+    Endpoint: /notificaciones/notificaciones/marcar-todas-leidas/
+    
+    Payload esperado: Ninguno
+    
+    Respuestas:
+    - 200 OK
+    - 401 Unauthorized
+
+[91] VER PREFERENCIAS
+    Tipo: GET
+    Nombre: Obtener preferencias de notificaciones
+    Endpoint: /notificaciones/preferencias/
+    
+    Respuestas:
+    - 200 OK:
+      {
+        "id": "uuid",
+        "usuario_email": "string",
+        "alertas_habilitadas": boolean,
+        "eventos_trazabilidad_habilitados": boolean,
+        "estados_envios_habilitados": boolean,
+        "calidad_habilitada": boolean,
+        "sincronizacion_habilitada": boolean,
+        "sistema_habilitada": boolean,
+        "intervalo_polling_segundos": integer,
+        "eliminar_notificaciones_leidas_dias": integer,
+        "silencioso_horario_inicio": "time",
+        "silencioso_horario_fin": "time"
+      }
+    - 401 Unauthorized
+
+[92] ACTUALIZAR PREFERENCIAS
+    Tipo: PUT
+    Nombre: Actualizar preferencias
+    Endpoint: /notificaciones/preferencias/
+    
+    Payload esperado:
+    {
+      "alertas_habilitadas": boolean (optional)",
+      "eventos_trazabilidad_habilitados": boolean (optional)",
+      "estados_envios_habilitados": boolean (optional)",
+      "calidad_habilitada": boolean (optional)",
+      "sincronizacion_habilitada": boolean (optional)",
+      "sistema_habilitada": boolean (optional)",
+      "intervalo_polling_segundos": integer (optional)",
+      "eliminar_notificaciones_leidas_dias": integer (optional)",
+      "silencioso_horario_inicio": "time (optional)",
+      "silencioso_horario_fin": "time (optional)"
+    }
+    
+    Respuestas:
+    - 200 OK
+    - 400 Bad Request
+    - 401 Unauthorized
+
+[93] LISTAR HISTORIAL DE LECTURA
+    Tipo: GET
+    Nombre: Obtener historial de lectura
+    Endpoint: /notificaciones/historial-lectura/
+    
+    Respuestas:
+    - 200 OK: (Array de registros de lectura)
+    - 401 Unauthorized
+
+
+================================================================================
+CÓDIGOS DE RESPUESTA HTTP
+================================================================================
+
+2xx - ÉXITO
+  200 OK: Solicitud exitosa
+  201 Created: Recurso creado exitosamente
+  204 No Content: Solicitud exitosa sin contenido
+
+4xx - ERROR DEL CLIENTE
+  400 Bad Request: Datos inválidos o campos requeridos faltantes
+  401 Unauthorized: Token inválido, expirado o no incluido
+  403 Forbidden: Acceso denegado por permisos
+  404 Not Found: Recurso no existe
+  409 Conflict: Conflicto (ej: nombre duplicado)
+  405 Method Not Allowed: Método HTTP no permitido en ese endpoint
+
+5xx - ERROR DEL SERVIDOR
+  500 Internal Server Error: Error en el servidor
+  503 Service Unavailable: Servicio no disponible
+
+
+================================================================================
+FORMATOS DE FECHA Y HORA
+================================================================================
+
+- DateTime: ISO 8601 (ej: 2025-10-21T10:30:00Z o 2025-10-21T10:30:00-05:00)
+- Date: YYYY-MM-DD (ej: 2025-10-21)
+- Time: HH:MM:SS (ej: 14:30:00)
+- UUID: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+
+
+================================================================================
+PAGINACIÓN
+================================================================================
+
+Los endpoints de listado soportan paginación:
+
+Parámetros:
+  - page: número de página (default: 1)
+  - page_size: registros por página (default: 10, máx: 100)
+
+Respuesta:
+{
+  "count": 150,
+  "next": "http://localhost:8000/api/v1/usuarios/empresas/?page=2",
+  "previous": null,
+  "results": [...]
+}
+
+
+================================================================================
+TOTAL DE ENDPOINTS: 93
+================================================================================
+
+Módulo Usuarios:        14 endpoints
+Módulo Trazabilidad:   18 endpoints
+Módulo Logística:      15 endpoints
+Módulo Procesamiento:   7 endpoints
+Módulo Reportes:        3 endpoints
+Módulo Documentos:      5 endpoints
+Módulo Sincronización:  5 endpoints
+Módulo Administración:  7 endpoints
+Módulo Alertas:        7 endpoints
+Módulo Notificaciones: 11 endpoints
+Sin clasificar:         1 endpoint (auth)
+
+================================================================================
+Generado: 2025-10-30
+Estado: Documentación Completa
+================================================================================

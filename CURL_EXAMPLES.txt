@@ -1,0 +1,560 @@
+================================================================================
+EJEMPLOS DE USO - CURL COMMANDS
+================================================================================
+
+Esta guía contiene ejemplos de comandos curl para probar todos los endpoints.
+
+
+================================================================================
+PASO 1: OBTENER TOKEN JWT (REQUERIDO PARA TODOS LOS ENDPOINTS)
+================================================================================
+
+curl -X POST http://localhost:8000/api/v1/auth/token/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "Stefano",
+    "password": "Paladins#23"
+  }'
+
+Guarda el "access" token para usarlo en los siguientes comandos:
+TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+
+
+================================================================================
+MÓDULO: USUARIOS
+================================================================================
+
+--- EMPRESAS ---
+
+# Listar empresas
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/usuarios/empresas/
+
+# Ver detalle de empresa
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/usuarios/empresas/{empresa_id}/
+
+# Crear empresa
+curl -X POST http://localhost:8000/api/v1/usuarios/empresas/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nombre": "Mi Empresa Agrícola",
+    "tipo_empresa": "PRODUCTOR",
+    "email": "contacto@miempresa.com",
+    "ciudad": "Bogotá",
+    "direccion": "Calle 5 No 123",
+    "telefono": "3001234567",
+    "pais": "Colombia"
+  }'
+
+# Actualizar empresa (solo campos modificables)
+curl -X PUT http://localhost:8000/api/v1/usuarios/empresas/{empresa_id}/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "nuevo@email.com",
+    "ciudad": "Medellín",
+    "telefono": "3009876543"
+  }'
+
+# Eliminar empresa
+curl -X DELETE http://localhost:8000/api/v1/usuarios/empresas/{empresa_id}/ \
+  -H "Authorization: Bearer $TOKEN"
+
+--- FINCAS ---
+
+# Listar fincas
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/usuarios/fincas/
+
+# Crear finca
+curl -X POST http://localhost:8000/api/v1/usuarios/fincas/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nombre": "Finca El Dorado",
+    "codigo_finca": "FINCA001",
+    "empresa": "{empresa_id}",
+    "direccion": "Km 5 Vía Ubaté",
+    "ciudad": "Ubaté",
+    "coordenadas_latitud": 5.3833,
+    "coordenadas_longitud": -73.3667,
+    "tamaño_hectareas": 50.0
+  }'
+
+# Listar fincas de una empresa
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/usuarios/empresas/{empresa_id}/fincas/
+
+
+================================================================================
+MÓDULO: TRAZABILIDAD
+================================================================================
+
+--- PRODUCTOS ---
+
+# Listar productos
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/trazabilidad/productos/
+
+# Crear producto
+curl -X POST http://localhost:8000/api/v1/trazabilidad/productos/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nombre": "Tomate Cherry",
+    "tipo_producto": "VERDURA",
+    "descripcion": "Tomate variedad cherry",
+    "unidad_medida": "kg"
+  }'
+
+--- LOTES ---
+
+# Listar lotes
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/trazabilidad/lotes/
+
+# Crear lote
+curl -X POST http://localhost:8000/api/v1/trazabilidad/lotes/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "codigo_lote": "LOTE20251030001",
+    "producto": "{producto_id}",
+    "cantidad": 1000.00,
+    "unidad_medida": "kg",
+    "fecha_produccion": "2025-10-30T08:00:00Z",
+    "latitud_origen": 5.3833,
+    "longitud_origen": -73.3667,
+    "nombre_ubicacion_origen": "Finca El Dorado",
+    "estado": "PRODUCCION",
+    "es_organico": true,
+    "temperatura_almacenamiento": 18.5,
+    "humedad_almacenamiento": 65.0
+  }'
+
+--- TIPOS DE EVENTOS ---
+
+# Listar tipos de eventos
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/trazabilidad/tipos-eventos/
+
+--- EVENTOS ---
+
+# Listar eventos de un lote
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/trazabilidad/lotes/{lote_id}/eventos/
+
+# Registrar evento
+curl -X POST http://localhost:8000/api/v1/trazabilidad/lotes/{lote_id}/eventos/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "tipo_evento": "{tipo_evento_id}",
+    "descripcion": "Siembra completada",
+    "fecha_evento": "2025-10-30T09:30:00Z",
+    "latitud": 5.3833,
+    "longitud": -73.3667,
+    "nombre_ubicacion": "Finca El Dorado",
+    "temperatura_registrada": 25.5,
+    "humedad_registrada": 70.0
+  }'
+
+# Generar QR para lote
+curl -X POST http://localhost:8000/api/v1/trazabilidad/lotes/{lote_id}/generar-qr/ \
+  -H "Authorization: Bearer $TOKEN"
+
+
+================================================================================
+MÓDULO: LOGÍSTICA
+================================================================================
+
+--- VEHÍCULOS ---
+
+# Listar vehículos
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/logistica/vehiculos/
+
+# Crear vehículo
+curl -X POST http://localhost:8000/api/v1/logistica/vehiculos/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "empresa": "{empresa_id}",
+    "placa": "ABC123",
+    "tipo_vehiculo": "CAMION",
+    "marca": "Volvo",
+    "modelo": "FH16",
+    "año_fabricacion": 2022,
+    "capacidad_kg": 5000.00,
+    "capacidad_volumen_m3": 25.0,
+    "es_refrigerado": true,
+    "temperatura_min": 2.0,
+    "temperatura_max": 8.0,
+    "estado": "DISPONIBLE",
+    "numero_seguro": "SEG2025001",
+    "fecha_vencimiento_seguro": "2026-12-31"
+  }'
+
+--- CONDUCTORES ---
+
+# Listar conductores
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/logistica/conductores/
+
+--- ENVÍOS ---
+
+# Listar envíos
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/logistica/envios/
+
+# Filtrar por estado
+curl -H "Authorization: Bearer $TOKEN" \
+  "http://localhost:8000/api/v1/logistica/envios/?estado=EN_TRANSITO"
+
+# Crear envío
+curl -X POST http://localhost:8000/api/v1/logistica/envios/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "lote": "{lote_id}",
+    "nombre_origen": "Finca El Dorado",
+    "nombre_destino": "Centro de Distribución Bogotá",
+    "latitud_origen": 5.3833,
+    "longitud_origen": -73.3667,
+    "latitud_destino": 4.7110,
+    "longitud_destino": -74.0055,
+    "estado": "PENDIENTE",
+    "observaciones": "Envío de tomate cherry",
+    "vehiculo": "{vehiculo_id}",
+    "conductor": "{conductor_id}",
+    "fecha_salida": "2025-10-30T10:00:00Z"
+  }'
+
+# Registrar tracking
+curl -X POST http://localhost:8000/api/v1/logistica/envios/{envio_id}/tracking/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "latitud": 5.0,
+    "longitud": -74.5,
+    "temperatura": 5.5,
+    "humedad": 68.0,
+    "velocidad_kmh": 80.0,
+    "observaciones": "En ruta normal"
+  }'
+
+
+================================================================================
+MÓDULO: PROCESAMIENTO
+================================================================================
+
+# Listar procesos
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/procesamiento/procesos/
+
+# Listar inspecciones
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/procesamiento/inspecciones/
+
+# Crear inspección
+curl -X POST http://localhost:8000/api/v1/procesamiento/inspecciones/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "lote": "{lote_id}",
+    "tipo_inspección": "Control de Calidad",
+    "resultado": "APROBADO",
+    "observaciones": "Producto conforme a estándares",
+    "inspector": "Juan Pérez",
+    "fecha_inspección": "2025-10-30T14:00:00Z"
+  }'
+
+# Listar certificaciones
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/procesamiento/certificaciones/
+
+# Listar análisis de laboratorio
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/procesamiento/analisis-laboratorio/
+
+
+================================================================================
+MÓDULO: REPORTES
+================================================================================
+
+# Listar reportes
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/reportes/reportes/
+
+# Crear reporte
+curl -X POST http://localhost:8000/api/v1/reportes/reportes/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "tipo_reporte": "TRAZABILIDAD",
+    "fecha_inicio": "2025-10-01",
+    "fecha_fin": "2025-10-31",
+    "formato": "PDF",
+    "incluir_graficos": true
+  }'
+
+
+================================================================================
+MÓDULO: DOCUMENTOS
+================================================================================
+
+# Listar documentos
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/documentos/documentos/
+
+# Listar fotos
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/documentos/fotos/
+
+# Subir documento (multipart form-data)
+curl -X POST http://localhost:8000/api/v1/documentos/documentos/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -F "lote={lote_id}" \
+  -F "tipo_documento=CERTIFICADO" \
+  -F "nombre=Certificado Orgánico" \
+  -F "descripcion=Certificación de producto orgánico" \
+  -F "archivo=@/ruta/al/documento.pdf"
+
+# Subir foto (multipart form-data)
+curl -X POST http://localhost:8000/api/v1/documentos/fotos/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -F "lote={lote_id}" \
+  -F "tipo_foto=PRODUCTO" \
+  -F "descripcion=Foto del producto en cosecha" \
+  -F "foto=@/ruta/a/foto.jpg"
+
+
+================================================================================
+MÓDULO: SINCRONIZACIÓN
+================================================================================
+
+# Listar estados
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/sincronizacion/estados/
+
+# Listar conflictos
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/sincronizacion/conflictos/
+
+# Resolver conflicto
+curl -X POST http://localhost:8000/api/v1/sincronizacion/conflictos/{conflicto_id}/resolver/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "resolucion": "SERVIDOR",
+    "notas": "Se resolvió a favor del servidor"
+  }'
+
+# Listar registros
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/sincronizacion/registros/
+
+
+================================================================================
+MÓDULO: ADMINISTRACIÓN
+================================================================================
+
+# Listar logs de acceso
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/administracion/logs-acceso/
+
+# Listar logs de actividad
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/administracion/logs-actividad/
+
+# Listar backups
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/administracion/backups/
+
+# Ejecutar backup manual
+curl -X POST http://localhost:8000/api/v1/administracion/backups/ejecutar/ \
+  -H "Authorization: Bearer $TOKEN"
+
+# Ver configuración
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/administracion/configuracion/
+
+# Actualizar configuración
+curl -X PUT http://localhost:8000/api/v1/administracion/configuracion/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "idioma_default": "es",
+    "zona_horaria": "America/Bogota",
+    "modo_mantenimiento": false
+  }'
+
+
+================================================================================
+MÓDULO: ALERTAS
+================================================================================
+
+# Listar alertas
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/alertas/alertas/
+
+# Listar alertas abiertas
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/alertas/alertas/abiertas/
+
+# Crear alerta
+curl -X POST http://localhost:8000/api/v1/alertas/alertas/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "tipo_alerta": "CALIDAD",
+    "prioridad": "ALTA",
+    "descripcion": "Desviación de temperatura en lote",
+    "lote": "{lote_id}"
+  }'
+
+# Resolver alerta
+curl -X POST http://localhost:8000/api/v1/alertas/alertas/{alerta_id}/resolver/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "comentario": "Problema resuelto",
+    "acciones_tomadas": "Se ajustó el sistema de refrigeración"
+  }'
+
+# Listar reglas
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/alertas/reglas/
+
+
+================================================================================
+MÓDULO: NOTIFICACIONES
+================================================================================
+
+# Listar notificaciones
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/notificaciones/notificaciones/
+
+# Listar notificaciones no leídas (POLLING)
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/notificaciones/notificaciones/no-leidas/
+
+# Crear notificación
+curl -X POST http://localhost:8000/api/v1/notificaciones/notificaciones/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "usuario_destinatario": "{usuario_id}",
+    "tipo_notificacion": "ALERTA",
+    "titulo": "Nueva Alerta del Sistema",
+    "cuerpo": "Se ha detectado una desviación de temperatura",
+    "prioridad": "ALTA",
+    "alerta": "{alerta_id}"
+  }'
+
+# Marcar como leída
+curl -X POST http://localhost:8000/api/v1/notificaciones/notificaciones/{notificacion_id}/marcar-leida/ \
+  -H "Authorization: Bearer $TOKEN"
+
+# Marcar todas como leídas
+curl -X POST http://localhost:8000/api/v1/notificaciones/notificaciones/marcar-todas-leidas/ \
+  -H "Authorization: Bearer $TOKEN"
+
+# Ver preferencias
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/notificaciones/preferencias/
+
+# Actualizar preferencias
+curl -X PUT http://localhost:8000/api/v1/notificaciones/preferencias/ \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "alertas_habilitadas": true,
+    "eventos_trazabilidad_habilitados": true,
+    "intervalo_polling_segundos": 300,
+    "silencioso_horario_inicio": "22:00:00",
+    "silencioso_horario_fin": "08:00:00"
+  }'
+
+# Listar historial de lectura
+curl -H "Authorization: Bearer $TOKEN" \
+  http://localhost:8000/api/v1/notificaciones/historial-lectura/
+
+
+================================================================================
+PARÁMETROS COMUNES DE QUERY
+================================================================================
+
+# Paginación
+?page=2&page_size=20
+
+# Búsqueda
+?search=nombre_de_empresa
+
+# Filtrado
+?estado=PENDIENTE
+?prioridad=ALTA
+?tipo_alerta=CALIDAD
+
+# Ordenamiento
+?ordering=-creado_en
+?ordering=nombre
+
+
+================================================================================
+MANEJO DE ERRORES
+================================================================================
+
+Si obtienes un error 400 Bad Request, revisa:
+  - Campos requeridos presentes
+  - Valores válidos para campos de opción (ej: PRODUCTOR, VERDURA)
+  - Formato correcto de fechas (ISO 8601)
+  - UUIDs válidos
+
+Si obtienes un error 401 Unauthorized:
+  - Token expirado (obtén uno nuevo)
+  - Token inválido (verifica que sea correcto)
+  - Header Authorization faltante o incorrecto
+
+Si obtienes un error 403 Forbidden:
+  - No tienes permisos para esta acción
+  - Contacta al administrador
+
+
+================================================================================
+TIPS PARA TESTING
+================================================================================
+
+1. Guarda el token en una variable de entorno:
+   TOKEN=$(curl -s -X POST http://localhost:8000/api/v1/auth/token/ \
+     -H "Content-Type: application/json" \
+     -d '{"username":"Stefano","password":"Paladins#23"}' | jq -r '.access')
+
+2. Usa jq para formatear respuestas JSON:
+   curl ... | jq '.'
+   curl ... | jq '.results[0]'
+
+3. Guarda IDs en variables para usarlos después:
+   EMPRESA_ID=$(curl -s ... -H "Authorization: Bearer $TOKEN" | jq -r '.results[0].id')
+   curl ... -d "{\"empresa\": \"$EMPRESA_ID\"}"
+
+4. Para testing en Windows PowerShell, escapa los caracteres especiales:
+   curl -X POST http://localhost:8000/api/v1/auth/token/ `
+     -H "Content-Type: application/json" `
+     -d '{\"username\":\"Stefano\",\"password\":\"Paladins#23\"}'
+
+
+================================================================================
+DOCUMENTACIÓN ADICIONAL
+================================================================================
+
+Swagger UI:  http://localhost:8000/api/docs/
+ReDoc:       http://localhost:8000/api/redoc/
+Schema JSON: http://localhost:8000/api/schema/
+
+Para integración frontend, consulta API_GUIDE.md
+
+Última actualización: 2025-10-30
+================================================================================
