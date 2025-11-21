@@ -12,6 +12,7 @@ class Reportes(models.Model):
         ('PRODUCCION', 'Producción Total'),
         ('CALIDAD', 'Control de Calidad'),
         ('LOGISTICA', 'Logística y Transporte'),
+        ('KPI', 'Indicadores Clave de Desempeño'),
         ('EXPORTACION', 'Exportaciones'),
         ('CUMPLIMIENTO', 'Cumplimiento Normativo'),
         ('EFICIENCIA', 'Eficiencia Operacional'),

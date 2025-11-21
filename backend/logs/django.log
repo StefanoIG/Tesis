@@ -2281,3 +2281,355 @@ Traceback (most recent call last):
 TypeError: 'int' object is not callable
 WARNING 2025-10-22 08:44:20,100 log 15140 68720 Unauthorized: /api/v1/usuarios/empresas/
 WARNING 2025-10-22 08:44:22,169 log 15140 14180 Unauthorized: /api/v1/usuarios/empresas/
+INFO 2025-11-20 14:29:32,282 autoreload 73944 73140 Watching for file changes with StatReloader
+WARNING 2025-11-20 14:29:40,921 log 73944 7336 Not Found: /
+WARNING 2025-11-20 14:29:41,412 log 73944 7336 Not Found: /favicon.ico
+WARNING 2025-11-20 14:29:44,124 log 73944 65992 Unauthorized: /api/v1/usuarios/empresas/
+INFO 2025-11-20 15:57:31,465 autoreload 96772 42932 Watching for file changes with StatReloader
+WARNING 2025-11-20 16:19:29,075 log 96772 7960 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:19:43,803 log 96772 7960 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:19:45,739 log 96772 7960 Unauthorized: /api/v1/logistica/envios/
+WARNING 2025-11-20 16:19:46,456 log 96772 7960 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 16:19:47,016 log 96772 7960 Unauthorized: /api/v1/notificaciones/notificaciones/
+WARNING 2025-11-20 16:33:06,578 log 96772 49356 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:38:14,463 log 96772 45696 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:38:14,466 log 96772 45696 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:38:24,806 log 96772 45696 Unauthorized: /api/v1/notificaciones/notificaciones/
+WARNING 2025-11-20 16:38:25,374 log 96772 45696 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 16:38:26,665 log 96772 45696 Unauthorized: /api/v1/logistica/envios/
+WARNING 2025-11-20 16:39:54,800 log 96772 45696 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:41:52,111 log 96772 45696 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:41:52,144 log 96772 45696 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:41:52,300 log 96772 45696 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:41:56,268 log 96772 45696 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:41:56,304 log 96772 45696 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:41:56,350 log 96772 45696 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:41:58,611 log 96772 45696 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:41:59,286 log 96772 45696 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:42:10,349 log 96772 62636 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:42:10,353 log 96772 62636 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:43:56,396 log 96772 62636 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:46:03,313 log 96772 62636 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:46:08,292 log 96772 62636 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:46:13,577 log 96772 62636 Unauthorized: /api/v1/logistica/envios/
+WARNING 2025-11-20 16:46:15,136 log 96772 62636 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 16:46:52,298 log 96772 62636 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:47:33,231 log 96772 62636 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:48:27,670 log 96772 62636 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:50:40,293 log 96772 62636 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:50:47,295 log 96772 62636 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:50:47,347 log 96772 62636 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:50:48,295 log 96772 62636 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:51:54,962 log 96772 62636 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:58:18,351 log 96772 62288 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:58:19,914 log 96772 62288 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:58:22,117 log 96772 62288 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:58:24,077 log 96772 62288 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:58:26,269 log 96772 62288 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:59:08,299 log 96772 62288 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 16:59:29,280 log 96772 62288 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 17:02:09,750 log 96772 62288 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 17:02:13,581 log 96772 62288 Unauthorized: /api/v1/logistica/envios/
+WARNING 2025-11-20 17:02:14,245 log 96772 62288 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 17:02:15,628 log 96772 62288 Unauthorized: /api/v1/notificaciones/notificaciones/
+WARNING 2025-11-20 17:02:16,355 log 96772 62288 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 17:02:16,838 log 96772 62288 Unauthorized: /api/v1/notificaciones/notificaciones/
+WARNING 2025-11-20 17:02:17,703 log 96772 62288 Unauthorized: /api/v1/notificaciones/notificaciones/
+WARNING 2025-11-20 17:02:18,339 log 96772 62288 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 17:02:20,038 log 96772 62288 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 17:02:23,873 log 96772 62288 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 17:05:15,229 log 96772 62288 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 17:06:26,343 log 96772 62288 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 17:06:28,350 log 96772 62288 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 17:06:30,415 log 96772 62288 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 17:06:32,714 log 96772 62288 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 17:07:34,747 log 96772 62288 Unauthorized: /api/v1/trazabilidad/productos/
+WARNING 2025-11-20 17:08:11,064 log 96772 62288 Unauthorized: /api/v1/notificaciones/notificaciones/
+WARNING 2025-11-20 17:08:14,188 log 96772 62288 Unauthorized: /api/v1/notificaciones/notificaciones/
+WARNING 2025-11-20 17:08:14,556 log 96772 62288 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 17:08:15,227 log 96772 62288 Unauthorized: /api/v1/logistica/envios/
+WARNING 2025-11-20 17:08:15,821 log 96772 62288 Unauthorized: /api/v1/logistica/envios/
+WARNING 2025-11-20 17:08:16,334 log 96772 62288 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 17:08:17,005 log 96772 62288 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 17:08:17,007 log 96772 62288 Unauthorized: /api/v1/logistica/envios/
+WARNING 2025-11-20 17:08:28,005 log 96772 62288 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 17:08:28,614 log 96772 62288 Unauthorized: /api/v1/trazabilidad/productos/
+WARNING 2025-11-20 17:08:44,574 log 96772 62288 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 17:16:24,623 log 96772 13476 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 17:16:24,862 log 96772 13476 Unauthorized: /api/v1/trazabilidad/productos/
+WARNING 2025-11-20 17:19:02,741 log 96772 13476 Unauthorized: /api/v1/trazabilidad/productos/
+WARNING 2025-11-20 18:22:47,010 log 96772 87572 Unauthorized: /api/v1/trazabilidad/productos/
+WARNING 2025-11-20 18:23:05,698 log 96772 87572 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 18:23:06,457 log 96772 87572 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:23:06,458 log 96772 34376 Unauthorized: /api/v1/logistica/envios/
+WARNING 2025-11-20 18:23:11,629 log 96772 34376 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 18:23:12,047 log 96772 34376 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 18:23:12,345 log 96772 34376 Unauthorized: /api/v1/notificaciones/notificaciones/
+WARNING 2025-11-20 18:23:13,858 log 96772 34376 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:24:31,510 log 96772 34376 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:24:36,829 log 96772 34376 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:24:37,327 log 96772 34376 Unauthorized: /api/v1/logistica/envios/
+WARNING 2025-11-20 18:24:38,140 log 96772 34376 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:24:38,679 log 96772 34376 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 18:24:38,973 log 96772 34376 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 18:24:39,307 log 96772 34376 Unauthorized: /api/v1/notificaciones/notificaciones/
+WARNING 2025-11-20 18:24:39,757 log 96772 34376 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:24:40,273 log 96772 34376 Unauthorized: /api/v1/trazabilidad/productos/
+WARNING 2025-11-20 18:26:17,105 log 96772 34376 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:28:10,290 log 96772 34376 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:29:16,592 log 96772 34376 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:29:24,219 log 96772 34376 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:29:24,247 log 96772 34376 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:31:00,166 log 96772 34376 Unauthorized: /api/v1/trazabilidad/productos/
+WARNING 2025-11-20 18:31:22,973 log 96772 34376 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:31:26,145 log 96772 34376 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:31:27,028 log 96772 34376 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:31:27,558 log 96772 34376 Unauthorized: /api/v1/logistica/envios/
+WARNING 2025-11-20 18:31:28,264 log 96772 34376 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:37:41,742 log 96772 84744 Unauthorized: /api/v1/trazabilidad/lotes/
+INFO 2025-11-20 18:40:05,766 autoreload 96772 42932 C:\Users\StefanoIG\Desktop\Tesis\backend\trazabilidad_agroindustrial\settings.py changed, reloading.
+INFO 2025-11-20 18:40:10,691 autoreload 19800 2476 Watching for file changes with StatReloader
+WARNING 2025-11-20 18:41:34,682 log 19800 51156 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:45:24,330 log 19800 51156 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:45:32,287 log 19800 51156 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:45:39,822 log 19800 51156 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:45:49,444 log 19800 51156 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-11-20 18:52:37,715 log 19800 31036 Unauthorized: /api/v1/auth/token/
+WARNING 2025-11-20 18:53:36,161 log 19800 111924 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 18:58:39,887 log 19800 111924 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 19:03:24,779 log 19800 111924 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 19:05:18,109 log 19800 111924 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 19:05:32,393 log 19800 111924 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 19:05:48,761 log 19800 111924 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 19:08:24,461 log 19800 111924 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 19:08:31,412 log 19800 111924 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 19:08:31,867 log 19800 111924 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 19:08:33,496 log 19800 111924 Not Found: /api/v1/alertas/
+WARNING 2025-11-20 19:09:14,023 log 19800 111924 Not Found: /api/v1/alertas/abiertas/
+WARNING 2025-11-20 19:09:23,344 log 19800 111924 Not Found: /api/v1/alertas/abiertas/
+WARNING 2025-11-20 19:09:29,167 log 19800 111924 Not Found: /api/v1/alertas/abiertas/
+WARNING 2025-11-20 19:14:22,230 log 19800 111924 Bad Request: /api/v1/reportes/reportes/
+WARNING 2025-11-20 19:14:24,137 log 19800 111924 Bad Request: /api/v1/reportes/reportes/
+WARNING 2025-11-20 19:14:25,630 log 19800 111924 Bad Request: /api/v1/reportes/reportes/
+WARNING 2025-11-20 19:14:33,421 log 19800 111924 Bad Request: /api/v1/reportes/reportes/
+WARNING 2025-11-20 19:15:23,485 log 19800 88352 Unauthorized: /api/v1/reportes/reportes/
+WARNING 2025-11-20 19:15:23,993 log 19800 90876 Not Found: /favicon.ico
+WARNING 2025-11-20 19:16:26,615 log 19800 111924 Bad Request: /api/v1/reportes/reportes/
+INFO 2025-11-20 19:16:48,274 autoreload 19800 2476 C:\Users\StefanoIG\Desktop\Tesis\backend\apps\reportes\models.py changed, reloading.
+INFO 2025-11-20 19:16:49,084 autoreload 114744 14008 Watching for file changes with StatReloader
+WARNING 2025-11-20 19:16:55,612 log 114744 6292 Bad Request: /api/v1/reportes/reportes/
+WARNING 2025-11-20 19:46:53,064 log 114744 1020 Not Found: /api/v1/alertas/abiertas/
+WARNING 2025-11-20 19:47:09,721 log 114744 1020 Not Found: /api/v1/alertas/abiertas/
+WARNING 2025-11-20 19:48:43,885 log 114744 1020 Bad Request: /api/v1/reportes/reportes/
+WARNING 2025-11-20 19:48:45,526 log 114744 1020 Bad Request: /api/v1/reportes/reportes/
+WARNING 2025-11-20 19:48:46,472 log 114744 1020 Bad Request: /api/v1/reportes/reportes/
+WARNING 2025-11-20 19:48:47,399 log 114744 1020 Bad Request: /api/v1/reportes/reportes/
+WARNING 2025-11-20 19:49:13,725 log 114744 1020 Not Found: /api/v1/alertas/abiertas/
+INFO 2025-11-20 19:50:36,077 autoreload 114744 14008 C:\Users\StefanoIG\Desktop\Tesis\backend\apps\reportes\serializers.py changed, reloading.
+INFO 2025-11-20 19:50:39,210 autoreload 113748 89276 Watching for file changes with StatReloader
+INFO 2025-11-20 19:50:54,820 autoreload 113748 89276 C:\Users\StefanoIG\Desktop\Tesis\backend\apps\reportes\models.py changed, reloading.
+INFO 2025-11-20 19:50:55,902 autoreload 45020 55072 Watching for file changes with StatReloader
+ERROR 2025-11-20 19:51:09,385 log 45020 112644 Internal Server Error: /api/v1/reportes/reportes/
+Traceback (most recent call last):
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\generics.py", line 242, in post
+    return self.create(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\backend\apps\reportes\serializers.py", line 62, in create
+    return super().create(validated_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\query.py", line 656, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\base.py", line 543, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 266, in __set__
+    raise ValueError(
+ValueError: Cannot assign "<User: Stefano>": "Reportes.usuario_creador" must be a "Usuarios" instance.
+ERROR 2025-11-20 19:51:17,312 log 45020 112644 Internal Server Error: /api/v1/reportes/reportes/
+Traceback (most recent call last):
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\generics.py", line 242, in post
+    return self.create(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\backend\apps\reportes\serializers.py", line 62, in create
+    return super().create(validated_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\query.py", line 656, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\base.py", line 543, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 266, in __set__
+    raise ValueError(
+ValueError: Cannot assign "<User: Stefano>": "Reportes.usuario_creador" must be a "Usuarios" instance.
+ERROR 2025-11-20 19:51:22,724 log 45020 112644 Internal Server Error: /api/v1/reportes/reportes/
+Traceback (most recent call last):
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\generics.py", line 242, in post
+    return self.create(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\backend\apps\reportes\serializers.py", line 62, in create
+    return super().create(validated_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\query.py", line 656, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\base.py", line 543, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 266, in __set__
+    raise ValueError(
+ValueError: Cannot assign "<User: Stefano>": "Reportes.usuario_creador" must be a "Usuarios" instance.
+ERROR 2025-11-20 19:51:24,832 log 45020 112644 Internal Server Error: /api/v1/reportes/reportes/
+Traceback (most recent call last):
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\generics.py", line 242, in post
+    return self.create(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\backend\apps\reportes\serializers.py", line 62, in create
+    return super().create(validated_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\query.py", line 656, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\base.py", line 543, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 266, in __set__
+    raise ValueError(
+ValueError: Cannot assign "<User: Stefano>": "Reportes.usuario_creador" must be a "Usuarios" instance.

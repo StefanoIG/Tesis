@@ -144,9 +144,23 @@ SIMPLE_JWT = {
 # ========== CORS CONFIG ==========
 CORS_ALLOWED_ORIGINS = config(
     'CORS_ALLOWED_ORIGINS',
-    default='http://localhost:3000,http://localhost:8000,http://127.0.0.1:3000',
+    default='http://localhost:3000,http://localhost:8000,http://localhost:8081,http://127.0.0.1:3000,http://127.0.0.1:8081',
     cast=lambda v: [s.strip() for s in v.split(',')]
 )
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
 
 # ========== S3 AWS CONFIG ==========
 USE_S3 = config('USE_S3', default=False, cast=bool)
