@@ -2633,3 +2633,5 @@ Traceback (most recent call last):
   File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 266, in __set__
     raise ValueError(
 ValueError: Cannot assign "<User: Stefano>": "Reportes.usuario_creador" must be a "Usuarios" instance.
+INFO 2025-11-20 19:51:42,421 autoreload 45020 55072 C:\Users\StefanoIG\Desktop\Tesis\backend\apps\reportes\models.py changed, reloading.
+INFO 2025-11-20 19:51:43,713 autoreload 36704 111076 Watching for file changes with StatReloader
