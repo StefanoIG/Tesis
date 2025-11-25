@@ -31,6 +31,7 @@ urlpatterns = [
     path('api/v1/certificaciones/', include('apps.certificaciones.urls')),
     path('api/v1/sensores/', include('apps.sensores.urls')),
     path('api/v1/clientes/', include('apps.clientes.urls')),
+    path('api/v1/planificacion/', include('apps.planificacion.urls')),
 ]
 
 if settings.DEBUG:

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.certificaciones',
     'apps.sensores',
     'apps.clientes',
+    'apps.planificacion',
 ]
 
 MIDDLEWARE = [

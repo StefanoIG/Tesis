@@ -48,16 +48,39 @@ env
 ENV/
 env.bak/
 venv.bak/
+venv/
 
 # Django
 *.log
-local_settings.py
+*.pot
+*.pyc
 db.sqlite3
 db.sqlite3-journal
+local_settings.py
 /media
 /staticfiles
+/static
+migrations/__pycache__/
+**/migrations/*.pyc
+**/migrations/__pycache__/
 .env
 .env.local
+.env.production
+*.env
+
+# Django secret key and sensitive files
+secret.txt
+secrets.json
+*.key
+*.pem
+
+# Media files (uploaded by users)
+media/
+uploads/
+certificaciones/
+estudios_suelo/
+permisos/
+qr_codes/
 
 # VS Code
 .vscode/
