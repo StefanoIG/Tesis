@@ -24,6 +24,13 @@ urlpatterns = [
     path('api/v1/administracion/', include('apps.administracion.urls')),
     path('api/v1/alertas/', include('apps.alertas.urls')),
     path('api/v1/notificaciones/', include('apps.notificaciones.urls')),
+    
+    # Nuevas apps
+    path('api/v1/auditoria/', include('apps.auditoria.urls')),
+    path('api/v1/roles-permisos/', include('apps.roles_permisos.urls')),
+    path('api/v1/certificaciones/', include('apps.certificaciones.urls')),
+    path('api/v1/sensores/', include('apps.sensores.urls')),
+    path('api/v1/clientes/', include('apps.clientes.urls')),
 ]
 
 if settings.DEBUG:

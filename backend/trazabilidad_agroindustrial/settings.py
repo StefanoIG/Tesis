@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'django_filters',
     
+    # Apps del sistema
     'apps.autenticacion',
     'apps.usuarios',
     'apps.trazabilidad',
@@ -36,6 +37,13 @@ INSTALLED_APPS = [
     'apps.administracion',
     'apps.alertas',
     'apps.notificaciones',
+    
+    # Nuevas apps
+    'apps.auditoria',
+    'apps.roles_permisos',
+    'apps.certificaciones',
+    'apps.sensores',
+    'apps.clientes',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +76,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'trazabilidad_agroindustrial.wsgi.application'
+
+# ========== CUSTOM USER MODEL ==========
+AUTH_USER_MODEL = 'autenticacion.Usuarios'
 
 # ========== DATABASE CONFIG ==========
 # Para desarrollo/pruebas usaremos SQLite

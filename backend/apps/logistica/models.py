@@ -3,6 +3,131 @@ from django.utils.translation import gettext_lazy as _
 import uuid
 
 
+class Ubicaciones(models.Model):
+    """
+    Ubicaciones geográficas para sensores y transporte.
+    """
+    TIPO_UBICACION = [
+        ('ALMACEN', 'Almacén'),
+        ('CAMPO', 'Campo'),
+        ('PLANTA', 'Planta de Procesamiento'),
+        ('VEHICULO', 'Vehículo'),
+        ('CLIENTE', 'Cliente'),
+        ('OTRO', 'Otro'),
+    ]
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    empresa = models.ForeignKey('usuarios.Empresas', on_delete=models.CASCADE, related_name='ubicaciones')
+    
+    nombre = models.CharField(max_length=255)
+    tipo_ubicacion = models.CharField(max_length=20, choices=TIPO_UBICACION)
+    descripcion = models.TextField(blank=True, null=True)
+    
+    # Coordenadas
+    latitud = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    longitud = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    
+    # Dirección
+    direccion = models.TextField(blank=True, null=True)
+    ciudad = models.CharField(max_length=100, blank=True, null=True)
+    pais = models.CharField(max_length=100, default='Ecuador')
+    
+    es_activa = models.BooleanField(default=True)
+    
+    creado_en = models.DateTimeField(auto_now_add=True)
+    actualizado_en = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'ubicaciones'
+        verbose_name = _('Ubicación')
+        verbose_name_plural = _('Ubicaciones')
+        indexes = [
+            models.Index(fields=['empresa', 'tipo_ubicacion']),
+        ]
+
+    def __str__(self):
+        return f"{self.nombre} ({self.tipo_ubicacion})"
+
+
+class Transportes(models.Model):
+    """
+    Registro general de transportes/envíos.
+    Diferente de Envios, este es más general y puede incluir transporte de insumos.
+    """
+    TIPO_TRANSPORTE = [
+        ('LOTE', 'Transporte de Lote'),
+        ('INSUMO', 'Transporte de Insumo'),
+        ('PRODUCTO', 'Transporte de Producto'),
+        ('OTRO', 'Otro'),
+    ]
+
+    ESTADO_TRANSPORTE = [
+        ('PROGRAMADO', 'Programado'),
+        ('EN_RUTA', 'En Ruta'),
+        ('COMPLETADO', 'Completado'),
+        ('CANCELADO', 'Cancelado'),
+    ]
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    empresa = models.ForeignKey('usuarios.Empresas', on_delete=models.CASCADE, related_name='transportes')
+    
+    codigo_transporte = models.CharField(max_length=100, unique=True)
+    tipo_transporte = models.CharField(max_length=20, choices=TIPO_TRANSPORTE)
+    estado = models.CharField(max_length=20, choices=ESTADO_TRANSPORTE, default='PROGRAMADO')
+    
+    # Origen y destino
+    ubicacion_origen = models.ForeignKey(
+        Ubicaciones,
+        on_delete=models.PROTECT,
+        related_name='transportes_origen'
+    )
+    ubicacion_destino = models.ForeignKey(
+        Ubicaciones,
+        on_delete=models.PROTECT,
+        related_name='transportes_destino'
+    )
+    
+    # Vehículo y conductor
+    vehiculo = models.ForeignKey(
+        'Vehiculos',
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True
+    )
+    conductor = models.ForeignKey(
+        'Conductores',
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True
+    )
+    
+    # Fechas
+    fecha_programada = models.DateTimeField()
+    fecha_inicio = models.DateTimeField(null=True, blank=True)
+    fecha_fin = models.DateTimeField(null=True, blank=True)
+    
+    # Información de carga
+    descripcion_carga = models.TextField(blank=True, null=True)
+    peso_kg = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    
+    observaciones = models.TextField(blank=True, null=True)
+    
+    creado_en = models.DateTimeField(auto_now_add=True)
+    actualizado_en = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'transportes'
+        verbose_name = _('Transporte')
+        verbose_name_plural = _('Transportes')
+        indexes = [
+            models.Index(fields=['codigo_transporte']),
+            models.Index(fields=['empresa', 'estado']),
+        ]
+
+    def __str__(self):
+        return f"{self.codigo_transporte} - {self.tipo_transporte}"
+
+
 class Vehiculos(models.Model):
     """
     Registro de vehículos utilizados para transporte de lotes.

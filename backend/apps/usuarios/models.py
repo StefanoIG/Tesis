@@ -30,7 +30,7 @@ class Empresas(models.Model):
     
     # Información operativa
     es_activa = models.BooleanField(default=True)
-    certificaciones = models.JSONField(default=list, blank=True, help_text="Lista de certificaciones (GlobalG.A.P, AGROCALIDAD, etc)")
+    certificaciones_info = models.JSONField(default=list, blank=True, help_text="Información general de certificaciones")
     
     creado_en = models.DateTimeField(auto_now_add=True)
     actualizado_en = models.DateTimeField(auto_now=True)
