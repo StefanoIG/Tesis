@@ -1517,3 +1517,376 @@ Sin clasificar:         1 endpoint (auth)
 Generado: 2025-10-30
 Estado: Documentación Completa
 ================================================================================
+
+================================================================================
+MÓDULO: CLIENTES (NUEVO)
+================================================================================
+
+[94] LISTAR CLIENTES
+  Tipo: GET
+  Nombre: Listar clientes
+  Endpoint: /clientes/clientes/
+
+  Parámetros query opcionales:
+  - page: número de página
+  - search: búsqueda por nombre_comercial, razon_social, identificación
+  - tipo_cliente, categoria, pais, es_activo (filtros)
+
+  Respuestas:
+  - 200 OK:
+    {
+     "count": N,
+     "next": "url",
+     "previous": null,
+     "results": [
+      {
+        "id": "uuid",
+        "nombre_comercial": "string",
+        "razon_social": "string",
+        "tipo_cliente": "DISTRIBUIDOR|PRODUCTOR|OTRO",
+        "categoria": "string",
+        "identificacion_fiscal": "string",
+        "email": "string",
+        "telefono": "string",
+        "direccion": "string",
+        "ciudad": "string",
+        "pais": "string",
+        "limite_credito": decimal,
+        "dias_credito": integer,
+        "es_activo": boolean,
+        "total_ventas": integer,
+        "ultima_venta": "date|null",
+        "creado_en": "datetime"
+      }
+     ]
+    }
+  - 401 Unauthorized
+
+[95] VER DETALLE CLIENTE
+  Tipo: GET
+  Nombre: Obtener detalles de un cliente
+  Endpoint: /clientes/clientes/{cliente_id}/
+
+  Respuestas:
+  - 200 OK: (Objeto cliente con campos completos, ver serializer `ClientesSerializer`)
+  - 401 Unauthorized
+  - 404 Not Found
+
+[96] CREAR CLIENTE
+  Tipo: POST
+  Nombre: Crear nuevo cliente
+  Endpoint: /clientes/clientes/
+
+  Payload esperado:
+  {
+    "nombre_comercial": "string (requerido)",
+    "razon_social": "string (opcional)",
+    "tipo_cliente": "string",
+    "categoria": "string",
+    "identificacion_fiscal": "string",
+    "email": "string",
+    "telefono": "string",
+    "direccion": "string",
+    "ciudad": "string",
+    "pais": "string",
+    "limite_credito": decimal (opcional),
+    "dias_credito": integer (opcional),
+    "contacto_nombre": "string (opcional)",
+    "notas": "string (opcional)"
+  }
+
+  Respuestas:
+  - 201 Created: (Objeto cliente creado)
+  - 400 Bad Request
+  - 401 Unauthorized
+
+[97] ACTUALIZAR CLIENTE
+  Tipo: PUT
+  Nombre: Actualizar cliente
+  Endpoint: /clientes/clientes/{cliente_id}/
+
+  Payload esperado: (Campos a actualizar)
+
+  Respuestas:
+  - 200 OK: (Cliente actualizado)
+  - 400 Bad Request
+  - 401 Unauthorized
+  - 404 Not Found
+
+[98] ELIMINAR CLIENTE
+  Tipo: DELETE
+  Nombre: Eliminar cliente
+  Endpoint: /clientes/clientes/{cliente_id}/
+
+  Respuestas:
+  - 204 No Content
+  - 401 Unauthorized
+  - 404 Not Found
+
+[99] LISTAR CLIENTES ACTIVOS
+  Tipo: GET
+  Nombre: Obtener clientes activos
+  Endpoint: /clientes/clientes/activos/
+
+  Respuestas:
+  - 200 OK: (Array de objetos cliente activos)
+  - 401 Unauthorized
+
+[100] ESTADÍSTICAS POR CLIENTE
+  Tipo: GET
+  Nombre: Obtener estadísticas de un cliente
+  Endpoint: /clientes/clientes/{cliente_id}/estadisticas/
+
+  Respuestas:
+  - 200 OK:
+    {
+     "total_ventas": integer,
+     "total_monto_ventas": decimal,
+     "ultima_venta": "date|null",
+     "cotizaciones_pendientes": integer,
+     "total_interacciones": integer,
+     "seguimientos_pendientes": integer
+    }
+  - 401 Unauthorized
+  - 404 Not Found
+
+[101] HISTORIAL DE COMPRAS
+  Tipo: GET
+  Nombre: Obtener historial de compras de un cliente
+  Endpoint: /clientes/clientes/{cliente_id}/historial-compras/
+
+  Respuestas:
+  - 200 OK: (Array de objetos `VentasSerializer`)
+  - 401 Unauthorized
+  - 404 Not Found
+
+
+================================================================================
+MÓDULO: PLANIFICACIÓN AGRÍCOLA (PLANIFICACION) - NUEVO
+================================================================================
+
+Base: /planificacion/
+Nota: Endpoints registrados mediante `router` (ModelViewSet) y acciones personalizadas.
+
+[102] CRUD ESTUDIOS DE SUELO
+  Tipo: GET/POST/PUT/DELETE
+  Nombre: Estudios de suelo
+  Endpoint: /planificacion/estudios-suelo/
+
+  Payload ejemplo (CREAR - `multipart/form-data` para archivo PDF):
+  {
+    "finca": "uuid",
+    "parcela": "uuid",
+    "nombre": "Estudio Octubre 2025",
+    "laboratorio": "Lab ABC",
+    "archivo": "file (PDF)",
+    "ph": 6.2,
+    "textura": "FRANCO",
+    "n": 12.5,
+    "p": 8.2,
+    "k": 120.0,
+    "observaciones": "Análisis completo"
+  }
+
+  Respuesta CREAR 201:
+  - Objeto `EstudiosSuelo` con campos: id, finca, parcela, nombre, laboratorio, ph, textura, nutrientes..., archivo (url), fecha_estudio, es_vigente
+
+[103] CRUD PARCELAS
+  Tipo: GET/POST/PUT/DELETE
+  Nombre: Parcelas
+  Endpoint: /planificacion/parcelas/
+
+  Payload CREAR ejemplo (JSON):
+  {
+    "finca": "uuid",
+    "codigo_parcela": "PAR-001",
+    "nombre": "Parcela Norte",
+    "area_hectareas": 2.5,
+    "geometria_svg": "<svg>...</svg>",
+    "coordenadas_geojson": {"type": "Polygon", "coordinates": [...]}
+  }
+
+  Respuesta CREAR 201: Objeto `Parcela` con `area_hectareas`, `codigo_parcela`, `geometria_svg`, `coordenadas_geojson`.
+
+[104] DIVIDIR PARCELA (ACCIÓN PERSONALIZADA)
+  Tipo: POST
+  Nombre: Dividir parcela en sub-parcelas
+  Endpoint: /planificacion/parcelas/{parcela_id}/dividir_parcela/
+
+  Payload esperado:
+  {
+    "divisiones": [
+     {"nombre": "Sub A", "area_hectareas": 1.0, "geometria_svg": "...", "coordenadas_geojson": {...}},
+     {"nombre": "Sub B", "area_hectareas": 1.5}
+    ]
+  }
+
+  Respuestas:
+  - 201 Created: Array con las nuevas parcelas creadas (objetos `Parcelas`)
+  - 400 Bad Request: si falta `divisiones` o la suma de áreas excede la original
+
+[105] CATALOGO DE CULTIVOS (CRUD)
+  Tipo: GET/POST/PUT/DELETE
+  Nombre: Catálogo de cultivos
+  Endpoint: /planificacion/catalogos-cultivos/
+
+[106] RECOMENDAR CULTIVOS (ACCIÓN PERSONALIZADA)
+  Tipo: POST
+  Nombre: Recomendar cultivos para una parcela
+  Endpoint: /planificacion/catalogos-cultivos/recomendar_cultivos/
+
+  Payload esperado:
+  {
+    "parcela_id": "uuid (requerido)",
+    "prioridad": "rentabilidad|facilidad|mercado (opcional, default: rentabilidad)"
+  }
+
+  Respuesta 200:
+  {
+    "parcela": { /* datos de la parcela (ParcelasSerializer) */ },
+    "estudio_suelo": { /* si existe, EstudiosSueloSerializer */ } | null,
+    "prioridad": "rentabilidad",
+    "recomendaciones": [
+     {
+      "cultivo": { /* CatalogosCultivosSerializer */ },
+      "score_compatibilidad": integer,
+      "razones": ["pH óptimo (6.2)", "Alta rentabilidad ($X/kg)"],
+      "tiene_estudio_suelo": boolean
+     }
+    ]
+  }
+
+[107] PLANES DE CULTIVO (CRUD)
+  Tipo: GET/POST/PUT/DELETE
+  Nombre: Planes de cultivo
+  Endpoint: /planificacion/planes-cultivo/
+
+[108] CALENDARIOS DE RIEGO (CRUD)
+  Tipo: GET/POST/PUT/DELETE
+  Nombre: Calendarios de riego
+  Endpoint: /planificacion/calendarios-riego/
+
+[109] PRÓXIMOS RIEGOS (ACCIÓN PERSONALIZADA)
+  Tipo: GET
+  Nombre: Obtener riegos programados en los próximos 7 días
+  Endpoint: /planificacion/calendarios-riego/proximos_riegos/
+
+  Respuesta 200: Array de objetos
+  [
+    {
+     "calendario": { /* CalendariosRiegoSerializer */ },
+     "fecha_proximo_riego": "YYYY-MM-DD",
+     "dias_restantes": integer,
+     "vencido": boolean
+    }
+  ]
+
+[110] REGISTROS DE RIEGO (CRUD)
+  Tipo: GET/POST/PUT/DELETE
+  Nombre: Registros de riego
+  Endpoint: /planificacion/registros-riego/
+
+[111] PERMISOS NACIONALES (CRUD)
+  Tipo: GET/POST/PUT/DELETE
+  Nombre: Permisos nacionales de Ecuador
+  Endpoint: /planificacion/permisos-nacionales/
+
+[112] PERMISOS PARA CULTIVO (ACCIÓN PERSONALIZADA)
+  Tipo: POST
+  Nombre: Obtener permisos requeridos para un cultivo
+  Endpoint: /planificacion/permisos-nacionales/permisos_para_cultivo/
+
+  Payload esperado:
+  {
+    "cultivo_id": "uuid (requerido)"
+  }
+
+  Respuesta 200:
+  {
+    "cultivo": { /* CatalogosCultivosSerializer */ },
+    "permisos": [ /* lista de PermisosNacionalesEcuadorSerializer */ ],
+    "total_permisos": integer
+  }
+
+[113] PERMISOS OBTENIDOS (CRUD)
+  Tipo: GET/POST/PUT/DELETE
+  Nombre: Permisos obtenidos por empresa/finca
+  Endpoint: /planificacion/permisos-obtenidos/
+
+[114] PERMISOS A PUNTO DE VENCER (ACCIÓN PERSONALIZADA)
+  Tipo: GET
+  Nombre: Permisos que vencen en los próximos 30 días
+  Endpoint: /planificacion/permisos-obtenidos/proximos_vencer/
+
+  Respuesta 200: Array de objetos `PermisosObtenidosSerializer` con campos: id, empresa, finca, permiso, numero_permiso, fecha_emision, fecha_vencimiento, estado
+
+
+================================================================================
+EXTENSIONES Y ENDPOINTS ADICIONALES
+================================================================================
+
+# Documentos: endpoints adicionales (validar/descargar)
+
+[115] VALIDAR DOCUMENTO
+  Tipo: PUT
+  Nombre: Validar un documento
+  Endpoint: /documentos/documentos/{documento_id}/validar/
+
+  Payload esperado:
+  {
+    "estado": "VALIDADO|RECHAZADO",
+    "es_autentico": boolean,
+    "comentarios_validacion": "string (opcional)",
+    "validado_por": "uuid (opcional)"
+  }
+
+  Respuesta 200: Objeto `DocumentosSerializer` con campos actualizados (estado, es_autentico, validado_por, fecha_validacion, comentarios_validacion)
+
+[116] DESCARGAR DOCUMENTO
+  Tipo: GET
+  Nombre: Descargar archivo del documento
+  Endpoint: /documentos/documentos/{documento_id}/descargar/
+
+  Respuesta 200: Archivo (binary) o JSON con URL temporal/`archivo` (según implementación). Ejemplo JSON alternativo:
+  {
+    "id": "uuid",
+    "archivo": "https://.../media/documentos/estimulo.pdf"
+  }
+
+
+# Logística: endpoints de tracking general (adicionales)
+
+[117] LISTAR/CREAR RASTREOS (GENERAL)
+  Tipo: GET/POST
+  Nombre: Listar o crear rastreos generales
+  Endpoint: /logistica/tracking/
+
+  Payload CREAR ejemplo:
+  {
+    "envio": "uuid (opcional)",
+    "latitud": decimal (requerido),
+    "longitud": decimal (requerido),
+    "temperatura": float (opcional),
+    "humedad": float (opcional),
+    "velocidad_kmh": float (opcional),
+    "observaciones": "string (opcional)"
+  }
+
+  Respuesta CREAR 201: Objeto `RuteTrackingActual` con campos: id, envio, latitud, longitud, temperatura, humedad, velocidad_kmh, timestamp, observaciones
+
+[118] VER RASTREO
+  Tipo: GET
+  Nombre: Obtener detalle de un rastreo
+  Endpoint: /logistica/tracking/{tracking_id}/
+
+  Respuestas:
+  - 200 OK: Objeto `RuteTrackingActualSerializer`
+  - 401 Unauthorized
+  - 404 Not Found
+
+
+================================================================================
+NOTA:
+- Los endpoints listados arriba corresponden a las nuevas apps detectadas en el código: `clientes` y `planificacion`, además de rutas adicionales en `documentos` y `logistica` que no estaban incluidas previamente.
+- Para los endpoints CRUD se asume el comportamiento estándar de `ModelViewSet`/`generics.ListCreateAPIView` descrito en el resto del documento.
+
