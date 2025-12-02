@@ -26,6 +26,27 @@ class EstudiosSueloViewSet(viewsets.ModelViewSet):
     search_fields = ['nombre', 'laboratorio']
     ordering_fields = ['fecha_estudio', 'creado_en']
     ordering = ['-fecha_estudio']
+    
+    def create(self, request, *args, **kwargs):
+        """
+        Create soil study with PDF file upload.
+        Accepts multipart/form-data with archivo_pdf field.
+        """
+        data = request.data.copy()
+        
+        # If no nombre provided, generate one
+        if not data.get('nombre'):
+            data['nombre'] = f"Estudio {data.get('finca', 'Finca')} - {date.today()}"
+        
+        # If no fecha_estudio, use today
+        if not data.get('fecha_estudio'):
+            data['fecha_estudio'] = date.today()
+        
+        serializer = self.get_serializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class ParcelasViewSet(viewsets.ModelViewSet):
@@ -37,6 +58,48 @@ class ParcelasViewSet(viewsets.ModelViewSet):
     search_fields = ['nombre', 'codigo_parcela']
     ordering_fields = ['area_hectareas', 'creado_en']
     ordering = ['codigo_parcela']
+    
+    @action(detail=False, methods=['get'])
+    def por_finca(self, request):
+        """
+        Obtiene todas las parcelas de una finca específica.
+        Query param: finca_id
+        """
+        finca_id = request.query_params.get('finca_id')
+        
+        if not finca_id:
+            return Response(
+                {'error': 'Debe proporcionar finca_id como query parameter'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        parcelas = self.queryset.filter(finca_id=finca_id, es_activa=True)
+        serializer = self.get_serializer(parcelas, many=True)
+        return Response(serializer.data)
+    
+    @action(detail=True, methods=['post'])
+    def actualizar_geometria(self, request, pk=None):
+        """
+        Actualiza la geometría de una parcela con datos del mapa.
+        """
+        parcela = self.get_object()
+        coordenadas_geojson = request.data.get('coordenadas_geojson')
+        geometria_svg = request.data.get('geometria_svg', '')
+        
+        if coordenadas_geojson:
+            parcela.coordenadas_geojson = coordenadas_geojson
+            parcela.geometria_svg = geometria_svg
+            parcela.save()
+            
+            return Response(
+                ParcelasSerializer(parcela).data,
+                status=status.HTTP_200_OK
+            )
+        
+        return Response(
+            {'error': 'Debe proporcionar coordenadas_geojson'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
     
     @action(detail=True, methods=['post'])
     def dividir_parcela(self, request, pk=None):
@@ -96,45 +159,72 @@ class CatalogosCultivosViewSet(viewsets.ModelViewSet):
         Recomienda cultivos basándose en:
         - Estudio de suelo (si existe)
         - Prioridades del usuario (rentabilidad, facilidad, mercado)
-        - Condiciones climáticas de la zona
+        - Preferencia de cultivo del productor
+        - Zona geográfica seleccionada
         """
-        parcela_id = request.data.get('parcela_id')
-        prioridad = request.data.get('prioridad', 'rentabilidad')  # rentabilidad, facilidad, mercado
+        parcela_ids = request.data.get('parcela_ids', [])
+        if not parcela_ids and request.data.get('parcela_id'):
+            parcela_ids = [request.data.get('parcela_id')]
         
-        if not parcela_id:
+        prioridad = request.data.get('prioridad', 'rentabilidad')  # rentabilidad, facilidad, mercado
+        cultivo_preferido = request.data.get('cultivo_preferido')  # nombre del cultivo que quiere el productor
+        area_geografica = request.data.get('area_geografica')  # GeoJSON del área seleccionada en el mapa
+        
+        if not parcela_ids:
             return Response(
-                {'error': 'Debe proporcionar el ID de la parcela'},
+                {'error': 'Debe proporcionar al menos una parcela'},
                 status=status.HTTP_400_BAD_REQUEST
             )
         
         try:
-            parcela = Parcelas.objects.get(id=parcela_id)
+            parcelas = Parcelas.objects.filter(id__in=parcela_ids)
+            if not parcelas.exists():
+                raise Parcelas.DoesNotExist
         except Parcelas.DoesNotExist:
             return Response(
-                {'error': 'Parcela no encontrada'},
+                {'error': 'Parcelas no encontradas'},
                 status=status.HTTP_404_NOT_FOUND
             )
         
-        # Obtener estudio de suelo más reciente (si existe)
-        estudio_suelo = EstudiosSuelo.objects.filter(
-            parcela=parcela,
-            es_vigente=True
-        ).order_by('-fecha_estudio').first()
+        # Obtener estudios de suelo para las parcelas seleccionadas
+        estudios_suelo = []
+        for parcela in parcelas:
+            estudio = EstudiosSuelo.objects.filter(
+                parcela=parcela,
+                es_vigente=True
+            ).order_by('-fecha_estudio').first()
+            if estudio:
+                estudios_suelo.append({'parcela': parcela, 'estudio': estudio})
         
+        tiene_estudios = len(estudios_suelo) > 0
+        
+        # Iniciar con todos los cultivos activos
         cultivos = CatalogosCultivos.objects.filter(es_activo=True)
         
-        # Filtrar por compatibilidad de suelo
-        if estudio_suelo and estudio_suelo.ph:
-            cultivos = cultivos.filter(
-                ph_minimo__lte=estudio_suelo.ph,
-                ph_maximo__gte=estudio_suelo.ph
-            )
+        # Si el productor tiene preferencia de cultivo, priorizarlo
+        cultivo_usuario_obj = None
+        if cultivo_preferido:
+            cultivo_usuario_obj = CatalogosCultivos.objects.filter(
+                Q(nombre_comun__icontains=cultivo_preferido) |
+                Q(nombre_cientifico__icontains=cultivo_preferido)
+            ).first()
+        
+        # Filtrar por compatibilidad de suelo si hay estudios
+        if tiene_estudios:
+            # Usar el primer estudio como referencia (podría promediar si hay varios)
+            estudio_ref = estudios_suelo[0]['estudio']
             
-            if estudio_suelo.textura:
+            if estudio_ref.ph:
                 cultivos = cultivos.filter(
-                    Q(texturas_compatibles__contains=[estudio_suelo.textura]) |
-                    Q(texturas_compatibles=[])
+                    ph_minimo__lte=estudio_ref.ph,
+                    ph_maximo__gte=estudio_ref.ph
                 )
+                
+                if estudio_ref.textura:
+                    cultivos = cultivos.filter(
+                        Q(texturas_compatibles__contains=[estudio_ref.textura]) |
+                        Q(texturas_compatibles=[])
+                    )
         
         # Ordenar según prioridad
         if prioridad == 'rentabilidad':
@@ -146,18 +236,32 @@ class CatalogosCultivosViewSet(viewsets.ModelViewSet):
         
         # Calcular score de compatibilidad
         recomendaciones = []
-        for cultivo in cultivos[:10]:
+        for cultivo in cultivos[:15]:
             score = 0
             razones = []
+            zona_recomendada = None
             
-            if estudio_suelo and estudio_suelo.ph:
-                if cultivo.ph_optimo_min <= estudio_suelo.ph <= cultivo.ph_optimo_max:
-                    score += 40
-                    razones.append(f"pH óptimo ({estudio_suelo.ph})")
-                elif cultivo.ph_minimo <= estudio_suelo.ph <= cultivo.ph_maximo:
-                    score += 20
-                    razones.append(f"pH aceptable ({estudio_suelo.ph})")
+            # BONUS: Si es el cultivo preferido del usuario
+            if cultivo_usuario_obj and cultivo.id == cultivo_usuario_obj.id:
+                score += 50
+                razones.append("Cultivo preferido del productor")
             
+            # Evaluar compatibilidad con estudios de suelo
+            if tiene_estudios:
+                for item in estudios_suelo:
+                    estudio = item['estudio']
+                    parcela_est = item['parcela']
+                    
+                    if estudio.ph:
+                        if cultivo.ph_optimo_min <= estudio.ph <= cultivo.ph_optimo_max:
+                            score += 40
+                            razones.append(f"pH óptimo en {parcela_est.nombre} ({estudio.ph})")
+                            zona_recomendada = parcela_est.nombre
+                        elif cultivo.ph_minimo <= estudio.ph <= cultivo.ph_maximo:
+                            score += 20
+                            razones.append(f"pH aceptable en {parcela_est.nombre} ({estudio.ph})")
+            
+            # Evaluar según prioridad del usuario
             if prioridad == 'rentabilidad' and cultivo.precio_mercado_promedio:
                 score += 30
                 razones.append(f"Alta rentabilidad (${cultivo.precio_mercado_promedio}/kg)")
@@ -170,17 +274,29 @@ class CatalogosCultivosViewSet(viewsets.ModelViewSet):
                 score += 15
                 razones.append(f"Demanda: {cultivo.get_demanda_mercado_display()}")
             
+            # Si NO hay estudio de suelo pero el usuario quiere este cultivo, sugerir zona
+            if not tiene_estudios and cultivo_usuario_obj and cultivo.id == cultivo_usuario_obj.id:
+                # Sugerir la parcela más grande o primera disponible
+                parcela_sugerida = parcelas.filter(estado_parcela='DISPONIBLE').order_by('-area_hectareas').first()
+                if parcela_sugerida:
+                    zona_recomendada = parcela_sugerida.nombre
+                    razones.append(f"Zona sugerida: {zona_recomendada} (parcela disponible más amplia)")
+            
             recomendaciones.append({
                 'cultivo': CatalogosCultivosSerializer(cultivo).data,
                 'score_compatibilidad': score,
                 'razones': razones,
-                'tiene_estudio_suelo': estudio_suelo is not None
+                'zona_recomendada': zona_recomendada,
+                'tiene_estudio_suelo': tiene_estudios
             })
         
         return Response({
-            'parcela': ParcelasSerializer(parcela).data,
-            'estudio_suelo': EstudiosSueloSerializer(estudio_suelo).data if estudio_suelo else None,
+            'parcelas': ParcelasSerializer(parcelas, many=True).data,
+            'estudios_suelo': [{'parcela': e['parcela'].nombre, 'estudio': EstudiosSueloSerializer(e['estudio']).data} for e in estudios_suelo],
+            'tiene_estudios_suelo': tiene_estudios,
+            'cultivo_preferido': CatalogosCultivosSerializer(cultivo_usuario_obj).data if cultivo_usuario_obj else None,
             'prioridad': prioridad,
+            'area_geografica': area_geografica,
             'recomendaciones': sorted(recomendaciones, key=lambda x: x['score_compatibilidad'], reverse=True)
         })
 
@@ -197,6 +313,63 @@ class PlanesCultivoViewSet(viewsets.ModelViewSet):
     
     def perform_create(self, serializer):
         serializer.save(creado_por=self.request.user)
+    
+    @action(detail=False, methods=['post'])
+    def crear_plan_automatico(self, request):
+        """
+        Crea un plan de cultivo automáticamente basándose en:
+        - Parcela seleccionada
+        - Cultivo recomendado o preferido
+        - Fecha de inicio
+        """
+        parcela_id = request.data.get('parcela_id')
+        cultivo_id = request.data.get('cultivo_id')
+        fecha_inicio = request.data.get('fecha_inicio', date.today())
+        variedad = request.data.get('variedad', '')
+        
+        if not parcela_id or not cultivo_id:
+            return Response(
+                {'error': 'Debe proporcionar parcela_id y cultivo_id'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        try:
+            parcela = Parcelas.objects.get(id=parcela_id)
+            cultivo = CatalogosCultivos.objects.get(id=cultivo_id)
+        except (Parcelas.DoesNotExist, CatalogosCultivos.DoesNotExist) as e:
+            return Response(
+                {'error': str(e)},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        
+        # Calcular fecha estimada de cosecha
+        if isinstance(fecha_inicio, str):
+            from datetime import datetime
+            fecha_inicio = datetime.strptime(fecha_inicio, '%Y-%m-%d').date()
+        
+        fecha_cosecha = fecha_inicio + timedelta(days=cultivo.dias_hasta_cosecha)
+        
+        # Crear el plan
+        plan = PlanesCultivo.objects.create(
+            parcela=parcela,
+            cultivo=cultivo,
+            variedad=variedad,
+            fecha_planificada_siembra=fecha_inicio,
+            fecha_estimada_cosecha=fecha_cosecha,
+            area_planificada_hectareas=parcela.area_hectareas,
+            cantidad_planificada_kg=cultivo.rendimiento_promedio_hectarea * parcela.area_hectareas if cultivo.rendimiento_promedio_hectarea else None,
+            estado='PLANIFICADO',
+            creado_por=request.user
+        )
+        
+        # Actualizar estado de la parcela
+        parcela.estado_parcela = 'PREPARACION'
+        parcela.save()
+        
+        return Response(
+            PlanesCultivoSerializer(plan).data,
+            status=status.HTTP_201_CREATED
+        )
 
 
 class CalendariosRiegoViewSet(viewsets.ModelViewSet):
