@@ -3389,3 +3389,280 @@ WARNING 2025-12-03 00:44:42,795 log 1688 27484 Unauthorized: /api/v1/auth/token/
 WARNING 2025-12-03 00:44:50,169 log 1688 27484 Unauthorized: /api/v1/auth/token/
 WARNING 2025-12-03 00:44:58,735 log 1688 27484 Unauthorized: /api/v1/auth/token/
 INFO 2025-12-04 20:08:20,615 autoreload 17884 18476 Watching for file changes with StatReloader
+WARNING 2025-12-04 20:19:04,769 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:04,920 log 17884 53064 Not Found: /api/v1/auth/refresh/
+WARNING 2025-12-04 20:19:04,987 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:05,047 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:05,110 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:05,170 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:05,231 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:05,278 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:05,325 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:05,376 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:05,425 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:05,479 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:05,539 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:05,597 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:05,647 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:05,698 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:05,748 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:05,799 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:05,849 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:05,902 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:05,961 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,016 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,069 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,122 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,167 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,220 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,265 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,311 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,362 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,404 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,463 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,508 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,554 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,645 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,696 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,738 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,785 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,822 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,870 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,914 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:06,966 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:07,012 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:07,071 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:07,124 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:07,178 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:07,226 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:07,273 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:07,322 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:07,368 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:07,413 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:07,466 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:07,521 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:07,574 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:07,629 log 17884 53064 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-04 20:19:18,322 log 17884 53064 Unauthorized: /api/v1/auth/token/
+WARNING 2025-12-05 01:28:10,994 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,096 log 17884 65224 Not Found: /api/v1/auth/refresh/
+WARNING 2025-12-05 01:28:11,166 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,230 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,275 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,314 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,354 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,392 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,431 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,470 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,503 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,539 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,581 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,624 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,664 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,704 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,743 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,780 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,818 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,856 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,894 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,929 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:11,981 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,022 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,079 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,133 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,196 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,256 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,304 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,343 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,381 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,420 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,453 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,491 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,526 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,562 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,599 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,633 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,672 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,707 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,742 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,775 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,814 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,848 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,883 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,917 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:12,968 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:13,029 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:13,086 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:13,133 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:13,176 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:13,220 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:13,277 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:13,352 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:13,429 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:13,474 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:13,531 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:14,290 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:14,554 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:14,773 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:15,013 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:15,241 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:15,456 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:15,677 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:15,897 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:16,129 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:16,359 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:16,577 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:16,825 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:17,049 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:17,279 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:17,498 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:17,716 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:17,964 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:18,204 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:18,434 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:18,660 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:18,880 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:19,111 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:19,332 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:19,565 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:19,787 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:20,009 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:20,238 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:20,466 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:20,695 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:20,928 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:21,207 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:21,454 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:21,701 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:21,948 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:22,202 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:22,445 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:22,687 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:22,928 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:23,154 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:23,390 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:23,624 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:23,880 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:24,105 log 17884 65224 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 01:28:40,190 log 17884 65224 Unauthorized: /api/v1/auth/token/
+WARNING 2025-12-05 02:11:50,695 log 17884 65664 Bad Request: /api/v1/usuarios/fincas/13f3ae64-a391-4b6f-a0a2-de37d1b97fc5/
+WARNING 2025-12-05 02:13:16,822 log 17884 65664 Bad Request: /api/v1/planificacion/estudios-suelo/
+ERROR 2025-12-05 02:13:40,505 log 17884 65664 Internal Server Error: /api/v1/planificacion/planes-cultivo/crear_plan_automatico/
+Traceback (most recent call last):
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\backend\apps\planificacion\views.py", line 353, in crear_plan_automatico
+    plan = PlanesCultivo.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\query.py", line 656, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: PlanesCultivo() got unexpected keyword arguments: 'area_planificada_hectareas', 'cantidad_planificada_kg'
+ERROR 2025-12-05 02:13:44,114 log 17884 65664 Internal Server Error: /api/v1/planificacion/planes-cultivo/crear_plan_automatico/
+Traceback (most recent call last):
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\backend\apps\planificacion\views.py", line 353, in crear_plan_automatico
+    plan = PlanesCultivo.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\query.py", line 656, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\StefanoIG\Desktop\Tesis\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: PlanesCultivo() got unexpected keyword arguments: 'area_planificada_hectareas', 'cantidad_planificada_kg'
+WARNING 2025-12-05 02:14:38,840 log 17884 65664 Bad Request: /api/v1/planificacion/estudios-suelo/
+WARNING 2025-12-05 02:14:50,765 log 17884 65664 Bad Request: /api/v1/planificacion/estudios-suelo/
+INFO 2025-12-05 02:16:12,596 autoreload 17884 18476 C:\Users\StefanoIG\Desktop\Tesis\backend\apps\planificacion\views.py changed, reloading.
+INFO 2025-12-05 02:16:18,244 autoreload 63764 65092 Watching for file changes with StatReloader
+INFO 2025-12-05 06:58:20,309 autoreload 63768 69800 Watching for file changes with StatReloader
+WARNING 2025-12-05 06:58:26,938 log 63768 14612 Unauthorized: /api/v1/planificacion/planes-cultivo/crear_plan_automatico/
+WARNING 2025-12-05 06:58:27,117 log 63768 14612 Not Found: /api/v1/auth/refresh/
+WARNING 2025-12-05 06:58:28,934 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:29,196 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:29,454 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:29,704 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:29,956 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:30,201 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:30,447 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:30,701 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:30,934 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:31,176 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:31,425 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:31,656 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:31,897 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:32,127 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:32,368 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:32,609 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:32,840 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:33,073 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:33,322 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:33,571 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:33,828 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:34,067 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:34,309 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:34,542 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:34,781 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:35,047 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:35,303 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:35,545 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:35,790 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:36,037 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:36,307 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:36,549 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:36,787 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:37,037 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:37,275 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:37,608 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:37,881 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+WARNING 2025-12-05 06:58:38,143 log 63768 14612 Unauthorized: /api/v1/trazabilidad/lotes/
+INFO 2025-12-05 06:58:46,165 autoreload 63768 69800 C:\Users\StefanoIG\Desktop\Tesis\backend\apps\planificacion\views.py changed, reloading.
+INFO 2025-12-05 06:58:47,869 autoreload 68504 26392 Watching for file changes with StatReloader
