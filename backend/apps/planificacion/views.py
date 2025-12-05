@@ -356,14 +356,12 @@ class PlanesCultivoViewSet(viewsets.ModelViewSet):
             variedad=variedad,
             fecha_planificada_siembra=fecha_inicio,
             fecha_estimada_cosecha=fecha_cosecha,
-            area_planificada_hectareas=parcela.area_hectareas,
-            cantidad_planificada_kg=cultivo.rendimiento_promedio_hectarea * parcela.area_hectareas if cultivo.rendimiento_promedio_hectarea else None,
-            estado='PLANIFICADO',
+            estado='APROBADO',
             creado_por=request.user
         )
         
         # Actualizar estado de la parcela
-        parcela.estado_parcela = 'PREPARACION'
+        parcela.estado_parcela = 'EN_USO'
         parcela.save()
         
         return Response(

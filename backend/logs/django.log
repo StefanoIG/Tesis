@@ -3388,3 +3388,4 @@ WARNING 2025-12-03 00:44:37,020 log 1688 27484 Unauthorized: /api/v1/auth/token/
 WARNING 2025-12-03 00:44:42,795 log 1688 27484 Unauthorized: /api/v1/auth/token/
 WARNING 2025-12-03 00:44:50,169 log 1688 27484 Unauthorized: /api/v1/auth/token/
 WARNING 2025-12-03 00:44:58,735 log 1688 27484 Unauthorized: /api/v1/auth/token/
+INFO 2025-12-04 20:08:20,615 autoreload 17884 18476 Watching for file changes with StatReloader
